@@ -1,0 +1,1121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Gaspro — Distribución</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0d1117;
+  --bg2: #161b22;
+  --bg3: #1c2230;
+  --border: #2a3444;
+  --accent: #e8a020;
+  --accent2: #f0b840;
+  --green: #2ea043;
+  --red: #da3633;
+  --blue: #388bfd;
+  --text: #e6edf3;
+  --text2: #8b949e;
+  --text3: #6e7681;
+  --radius: 8px;
+  --shadow: 0 4px 24px rgba(0,0,0,0.4);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Barlow', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  font-size: 14px;
+}
+
+/* ── NAV ── */
+#nav {
+  background: var(--bg2);
+  border-bottom: 2px solid var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  height: 52px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+#nav .logo {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 800;
+  font-size: 20px;
+  color: var(--accent);
+  letter-spacing: 1px;
+}
+#nav .logo span { color: var(--text2); font-weight: 400; font-size: 13px; margin-left: 8px; }
+.nav-tabs { display: flex; gap: 4px; }
+.nav-tab {
+  padding: 6px 14px;
+  border-radius: var(--radius);
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 13px;
+  color: var(--text2);
+  border: none;
+  background: transparent;
+  transition: all .2s;
+}
+.nav-tab:hover { color: var(--text); background: var(--bg3); }
+.nav-tab.active { background: var(--accent); color: #000; }
+
+/* ── PAGES ── */
+.page { display: none; padding: 20px 16px; max-width: 680px; margin: 0 auto; }
+.page.active { display: block; }
+
+/* ── CARDS ── */
+.card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 18px;
+  margin-bottom: 14px;
+}
+.card-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--accent);
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+}
+.card-title .badge {
+  background: var(--accent);
+  color: #000;
+  font-size: 11px;
+  padding: 2px 7px;
+  border-radius: 20px;
+  font-weight: 800;
+}
+
+/* ── FORM ELEMENTS ── */
+.field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px; }
+.field-row.single { grid-template-columns: 1fr; }
+.field-row.triple { grid-template-columns: 1fr 1fr 1fr; }
+
+.field { display: flex; flex-direction: column; gap: 4px; }
+.field label {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text2);
+  text-transform: uppercase;
+  letter-spacing: .5px;
+}
+.field input, .field select {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text);
+  font-family: 'Barlow', sans-serif;
+  font-size: 14px;
+  padding: 8px 10px;
+  width: 100%;
+  transition: border-color .2s;
+  -webkit-appearance: none;
+}
+.field input:focus, .field select:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+.field input[type=number] { text-align: right; }
+
+/* ── CILINDROS TABLE ── */
+.cil-section {
+  margin-top: 12px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  overflow: hidden;
+}
+.cil-header {
+  display: grid;
+  grid-template-columns: 1fr 90px 90px;
+  background: var(--bg3);
+  padding: 6px 10px;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text2);
+  text-transform: uppercase;
+  letter-spacing: .5px;
+  gap: 6px;
+}
+.cil-group-label {
+  background: #1e2a3a;
+  padding: 4px 10px;
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--blue);
+  text-transform: uppercase;
+  letter-spacing: .8px;
+}
+.cil-row {
+  display: grid;
+  grid-template-columns: 1fr 90px 90px;
+  gap: 6px;
+  align-items: center;
+  padding: 4px 10px;
+  border-top: 1px solid var(--border);
+}
+.cil-row:hover { background: var(--bg3); }
+.cil-name { font-size: 12px; font-weight: 500; color: var(--text); }
+.cil-row input {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  color: var(--text);
+  font-size: 13px;
+  padding: 4px 6px;
+  text-align: center;
+  width: 100%;
+  font-family: 'Barlow', sans-serif;
+}
+.cil-row input:focus { outline: none; border-color: var(--accent); }
+
+/* ── TRIP ACCORDION ── */
+.trip-block {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  margin-bottom: 10px;
+  overflow: hidden;
+}
+.trip-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  background: var(--bg3);
+  cursor: pointer;
+  user-select: none;
+}
+.trip-header-left { display: flex; align-items: center; gap: 10px; }
+.trip-num {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 800;
+  font-size: 18px;
+  color: var(--accent);
+}
+.trip-summary { font-size: 12px; color: var(--text2); }
+.trip-toggle {
+  font-size: 16px;
+  color: var(--text3);
+  transition: transform .2s;
+}
+.trip-block.open .trip-toggle { transform: rotate(180deg); }
+.trip-body {
+  display: none;
+  padding: 14px;
+  border-top: 1px solid var(--border);
+}
+.trip-block.open .trip-body { display: block; }
+
+.trip-active-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+  font-size: 13px;
+  color: var(--text2);
+  cursor: pointer;
+}
+.toggle-switch {
+  width: 36px; height: 20px;
+  background: var(--border);
+  border-radius: 20px;
+  position: relative;
+  transition: background .2s;
+  flex-shrink: 0;
+}
+.toggle-switch::after {
+  content: '';
+  width: 14px; height: 14px;
+  background: #fff;
+  border-radius: 50%;
+  position: absolute;
+  top: 3px; left: 3px;
+  transition: left .2s;
+}
+.toggle-switch.on { background: var(--green); }
+.toggle-switch.on::after { left: 19px; }
+
+/* ── BUTTONS ── */
+.btn {
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: .5px;
+  padding: 10px 20px;
+  transition: all .15s;
+  text-transform: uppercase;
+}
+.btn-primary { background: var(--accent); color: #000; width: 100%; margin-top: 6px; }
+.btn-primary:hover { background: var(--accent2); }
+.btn-success { background: var(--green); color: #fff; }
+.btn-success:hover { opacity: .9; }
+.btn-outline {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text2);
+}
+.btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+.btn-sm { font-size: 12px; padding: 6px 12px; }
+
+.submit-zone { margin-top: 8px; }
+.submit-note { font-size: 11px; color: var(--text3); text-align: center; margin-top: 8px; }
+
+/* ── STATUS TOAST ── */
+#toast {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%) translateY(80px);
+  background: var(--green);
+  color: #fff;
+  padding: 10px 24px;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 14px;
+  z-index: 999;
+  transition: transform .3s;
+  white-space: nowrap;
+}
+#toast.show { transform: translateX(-50%) translateY(0); }
+#toast.error { background: var(--red); }
+
+/* ── DASHBOARD ── */
+.dash-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  flex-wrap: gap;
+  gap: 10px;
+}
+.dash-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 800;
+  font-size: 22px;
+}
+.dash-filters { display: flex; gap: 8px; flex-wrap: wrap; }
+.dash-filters input, .dash-filters select {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text);
+  font-family: 'Barlow', sans-serif;
+  font-size: 13px;
+  padding: 7px 10px;
+}
+.dash-filters input:focus, .dash-filters select:focus { outline: none; border-color: var(--accent); }
+
+.stat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 14px; }
+.stat-card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 12px 14px;
+  text-align: center;
+}
+.stat-val {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 800;
+  font-size: 28px;
+  color: var(--accent);
+  line-height: 1;
+}
+.stat-lbl { font-size: 11px; color: var(--text2); margin-top: 2px; text-transform: uppercase; letter-spacing: .4px; }
+
+/* ── TABLE ── */
+.tbl-wrap { overflow-x: auto; border-radius: var(--radius); border: 1px solid var(--border); }
+table { width: 100%; border-collapse: collapse; font-size: 12px; }
+thead { background: var(--bg3); }
+th {
+  padding: 8px 10px;
+  text-align: left;
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--text2);
+  text-transform: uppercase;
+  letter-spacing: .5px;
+  white-space: nowrap;
+}
+td {
+  padding: 8px 10px;
+  border-top: 1px solid var(--border);
+  white-space: nowrap;
+}
+tr:hover td { background: var(--bg3); }
+.pill {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 20px;
+  font-size: 10px;
+  font-weight: 700;
+}
+.pill-sps { background: #1a3a5c; color: var(--blue); }
+.pill-cho { background: #3a1a1a; color: #f87171; }
+.num { text-align: right; font-variant-numeric: tabular-nums; }
+.empty-state {
+  text-align: center;
+  padding: 40px;
+  color: var(--text3);
+  font-style: italic;
+}
+.detail-btn {
+  background: none;
+  border: none;
+  color: var(--blue);
+  cursor: pointer;
+  font-size: 12px;
+  text-decoration: underline;
+  font-family: 'Barlow', sans-serif;
+}
+
+/* ── MODAL ── */
+#modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.7);
+  z-index: 200;
+  overflow-y: auto;
+  padding: 20px;
+}
+#modal-overlay.open { display: flex; align-items: flex-start; justify-content: center; }
+#modal-box {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  width: 100%;
+  max-width: 600px;
+  margin: auto;
+}
+#modal-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 800;
+  font-size: 20px;
+  color: var(--accent);
+  margin-bottom: 14px;
+}
+#modal-close {
+  float: right;
+  background: none;
+  border: none;
+  color: var(--text2);
+  font-size: 22px;
+  cursor: pointer;
+  line-height: 1;
+}
+
+/* ── CONFIG PAGE ── */
+.config-section { margin-bottom: 20px; }
+.config-section h3 {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--text2);
+  text-transform: uppercase;
+  letter-spacing: .5px;
+  margin-bottom: 10px;
+}
+.sheets-steps { counter-reset: steps; }
+.step {
+  counter-increment: steps;
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  margin-bottom: 12px;
+  font-size: 13px;
+  color: var(--text2);
+  line-height: 1.5;
+}
+.step::before {
+  content: counter(steps);
+  background: var(--accent);
+  color: #000;
+  font-weight: 800;
+  font-size: 12px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-family: 'Barlow Condensed', sans-serif;
+}
+.code-box {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 10px 12px;
+  font-family: monospace;
+  font-size: 11px;
+  color: var(--accent2);
+  word-break: break-all;
+  margin-top: 4px;
+}
+
+@media (max-width: 480px) {
+  .stat-grid { grid-template-columns: repeat(3, 1fr); }
+  .stat-val { font-size: 22px; }
+  .nav-tab { padding: 6px 10px; font-size: 12px; }
+  .field-row.triple { grid-template-columns: 1fr 1fr; }
+}
+</style>
+</head>
+<body>
+
+<div id="nav">
+  <div class="logo">GASPRO <span>Distribución HN</span></div>
+  <div class="nav-tabs">
+    <button class="nav-tab active" onclick="showPage('form')">📋 Motorista</button>
+    <button class="nav-tab" onclick="showPage('dash')">📊 Despacho</button>
+    <button class="nav-tab" onclick="showPage('config')">⚙️ Config</button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════ FORMULARIO MOTORISTA ═══════════════════════════ -->
+<div id="page-form" class="page active">
+
+  <div class="card">
+    <div class="card-title">🚛 Registro de Trip</div>
+
+    <div class="field-row">
+      <div class="field">
+        <label>Fecha</label>
+        <input type="date" id="f-fecha">
+      </div>
+      <div class="field">
+        <label>Camión</label>
+        <select id="f-camion">
+          <option value="">Seleccionar...</option>
+          <option value="HAH3239">HAH3239 – HINO 2019 3.5T (SPS)</option>
+          <option value="HAB5763">HAB5763 – HINO 2019 3.5T (SPS)</option>
+          <option value="HAU7369">HAU7369 – HINO 2020 6.5T (SPS)</option>
+          <option value="C0-939BQJ">C0-939BQJ – ISUZU 2017 6.5T (SPS)</option>
+          <option value="HAB5761">HAB5761 – HINO 2019 6.5T (SPS)</option>
+          <option value="HBA0357">HBA0357 – HINO 2021 6.5T (CHO)</option>
+          <option value="HAB5762">HAB5762 – HINO 2019 6.5T (CHO)</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- TRIPS 1-4 -->
+  <div id="trips-container"></div>
+
+  <div class="submit-zone">
+    <button class="btn btn-primary" onclick="guardarRegistro()">✓ GUARDAR REGISTRO DEL DÍA</button>
+    <div class="submit-note">Los datos se guardan localmente y se sincronizan si hay conexión</div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════ DASHBOARD DESPACHADOR ═══════════════════════════ -->
+<div id="page-dash" class="page">
+
+  <div class="dash-header">
+    <div class="dash-title">Panel de Despacho</div>
+    <div class="dash-filters">
+      <input type="date" id="d-fecha" onchange="renderDash()">
+      <select id="d-camion" onchange="renderDash()">
+        <option value="">Todos los camiones</option>
+        <option value="HAH3239">HAH3239</option>
+        <option value="HAB5763">HAB5763</option>
+        <option value="HAU7369">HAU7369</option>
+        <option value="C0-939BQJ">C0-939BQJ</option>
+        <option value="HAB5761">HAB5761</option>
+        <option value="HBA0357">HBA0357</option>
+        <option value="HAB5762">HAB5762</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="stat-grid">
+    <div class="stat-card"><div class="stat-val" id="s-trips">0</div><div class="stat-lbl">Trips</div></div>
+    <div class="stat-card"><div class="stat-val" id="s-kms">0</div><div class="stat-lbl">Kms Total</div></div>
+    <div class="stat-card"><div class="stat-val" id="s-cils">0</div><div class="stat-lbl">Cilindros</div></div>
+  </div>
+
+  <div class="tbl-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Camión</th>
+          <th>Zona</th>
+          <th>Trips</th>
+          <th class="num">Kms</th>
+          <th class="num">Cil. Salida</th>
+          <th class="num">Cil. Retorno</th>
+          <th class="num">Tasa %</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody id="dash-tbody">
+        <tr><td colspan="8" class="empty-state">Selecciona una fecha para ver registros</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div style="margin-top:14px; display:flex; gap:8px; flex-wrap:wrap;">
+    <button class="btn btn-success btn-sm" onclick="exportCSV()">⬇ Exportar CSV</button>
+    <button class="btn btn-outline btn-sm" onclick="exportAllCSV()">⬇ Exportar Todo el Mes</button>
+    <button class="btn btn-outline btn-sm" style="color:var(--red);border-color:var(--red)" onclick="clearData()">🗑 Borrar datos</button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════ CONFIGURACIÓN ═══════════════════════════════════ -->
+<div id="page-config" class="page">
+
+  <div class="card">
+    <div class="card-title">🔗 Conexión con Google Sheets</div>
+    <div class="config-section">
+      <div class="field field-row single" style="margin-bottom:12px">
+        <div class="field">
+          <label>URL del Google Apps Script (Web App)</label>
+          <input type="url" id="cfg-url" placeholder="https://script.google.com/macros/s/..." oninput="saveConfig()">
+        </div>
+      </div>
+      <div id="conn-status" style="font-size:12px;color:var(--text3);margin-bottom:12px"></div>
+      <button class="btn btn-outline btn-sm" onclick="testConnection()">Probar conexión</button>
+    </div>
+
+    <div class="config-section">
+      <h3>Cómo configurar Google Sheets</h3>
+      <div class="sheets-steps">
+        <div class="step">Crea un Google Sheet nuevo. En la primera hoja, nombra las columnas: <code style="color:var(--accent2)">fecha, camion, zona, trip, kms_ini, kms_fin, kms_rec, hora_sal, hora_ent, [productos_salida x24], [productos_retorno x24], cil_salida, cil_retorno, tasa_carga</code></div>
+        <div class="step">En el Sheet, ve a <strong>Extensiones → Apps Script</strong> y pega el código de abajo.</div>
+        <div class="step">Haz clic en <strong>Implementar → Nueva implementación → Aplicación web</strong>. Acceso: "Cualquier persona". Copia la URL generada.</div>
+        <div class="step">Pega esa URL en el campo de arriba y presiona "Probar conexión".</div>
+      </div>
+      <div style="margin-top:10px">
+        <div style="font-size:11px;color:var(--text2);margin-bottom:6px;font-weight:600">CÓDIGO APPS SCRIPT:</div>
+        <div class="code-box" id="apps-script-code" style="cursor:pointer" onclick="copyScript()" title="Clic para copiar">
+function doPost(e) {
+  var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+  var data = JSON.parse(e.postData.contents);
+  var rows = data.rows;
+  rows.forEach(function(row) { sheet.appendRow(row); });
+  return ContentService.createTextOutput(JSON.stringify({ok:true}))
+    .setMimeType(ContentService.MimeType.JSON);
+}
+function doGet(e) {
+  return ContentService.createTextOutput(JSON.stringify({ok:true,msg:"Gaspro Script activo"}))
+    .setMimeType(ContentService.MimeType.JSON);
+}
+        </div>
+        <div style="font-size:11px;color:var(--text3);margin-top:4px">↑ Clic para copiar al portapapeles</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📦 Capacidad de Camiones</div>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Placa</th><th>Modelo</th><th>Carga TM</th><th>Cil. Max</th><th>Zona</th></tr></thead>
+        <tbody>
+          <tr><td>HAH3239</td><td>HINO 2019</td><td>3.5</td><td>50</td><td><span class="pill pill-sps">SPS</span></td></tr>
+          <tr><td>HAB5763</td><td>HINO 2019</td><td>3.5</td><td>50</td><td><span class="pill pill-sps">SPS</span></td></tr>
+          <tr><td>HAU7369</td><td>HINO 2020</td><td>6.5</td><td>100</td><td><span class="pill pill-sps">SPS</span></td></tr>
+          <tr><td>C0-939BQJ</td><td>ISUZU 2017</td><td>6.5</td><td>100</td><td><span class="pill pill-sps">SPS</span></td></tr>
+          <tr><td>HAB5761</td><td>HINO 2019</td><td>6.5</td><td>100</td><td><span class="pill pill-sps">SPS</span></td></tr>
+          <tr><td>HBA0357</td><td>HINO 2021</td><td>6.5</td><td>100</td><td><span class="pill pill-cho">CHO</span></td></tr>
+          <tr><td>HAB5762</td><td>HINO 2019</td><td>6.5</td><td>100</td><td><span class="pill pill-cho">CHO</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL DETALLE -->
+<div id="modal-overlay" onclick="closeModal(event)">
+  <div id="modal-box">
+    <button id="modal-close" onclick="closeModal()">×</button>
+    <div id="modal-title"></div>
+    <div id="modal-body"></div>
+  </div>
+</div>
+
+<div id="toast"></div>
+
+<script>
+// ═══════════════════════════ DATA ═══════════════════════════
+
+const PRODUCTOS = [
+  {id:'O2-IND-250', label:'O₂ IND 250', grp:'OXÍGENO'},
+  {id:'O2-IND-100', label:'O₂ IND 100', grp:'OXÍGENO'},
+  {id:'O2-IND-24',  label:'O₂ IND 24',  grp:'OXÍGENO'},
+  {id:'O2-MED-250', label:'O₂ MED 250', grp:'OXÍGENO'},
+  {id:'O2-MED-24',  label:'O₂ MED 24',  grp:'OXÍGENO'},
+  {id:'AR-250',     label:'AR 250',      grp:'GASES'},
+  {id:'N2-250',     label:'N₂ 250',      grp:'GASES'},
+  {id:'HE-250',     label:'HE 250',      grp:'GASES'},
+  {id:'AIRE-250',   label:'AIRE 250',    grp:'GASES'},
+  {id:'HIDRO-250',  label:'H₂ 250',      grp:'GASES'},
+  {id:'MEZ-250',    label:'MEZCLA 250',  grp:'GASES'},
+  {id:'CO2-50LB',   label:'CO₂ 50LB',   grp:'CO2'},
+  {id:'A10',        label:'ACET A10',    grp:'ACETILENO'},
+  {id:'A7',         label:'ACET A7',     grp:'ACETILENO'},
+  {id:'A4',         label:'ACET A4',     grp:'ACETILENO'},
+  {id:'A2',         label:'ACET A2',     grp:'ACETILENO'},
+  {id:'A1',         label:'ACET A1',     grp:'ACETILENO'},
+  {id:'LOX-180',    label:'LOX 180',     grp:'CRIOGÉNICOS'},
+  {id:'LOX-230',    label:'LOX 230',     grp:'CRIOGÉNICOS'},
+  {id:'LIN-180',    label:'LIN 180',     grp:'CRIOGÉNICOS'},
+  {id:'LIN-230',    label:'LIN 230',     grp:'CRIOGÉNICOS'},
+  {id:'LAR-180',    label:'LAR 180',     grp:'CRIOGÉNICOS'},
+  {id:'LAR-230',    label:'LAR 230',     grp:'CRIOGÉNICOS'},
+  {id:'OTROS',      label:'OTROS',       grp:'OTROS'},
+];
+
+const CAMIONES = {
+  'HAH3239':   {modelo:'HINO 2019', tm:3.5, max:50,  zona:'SPS'},
+  'HAB5763':   {modelo:'HINO 2019', tm:3.5, max:50,  zona:'SPS'},
+  'HAU7369':   {modelo:'HINO 2020', tm:6.5, max:100, zona:'SPS'},
+  'C0-939BQJ': {modelo:'ISUZU 2017',tm:6.5, max:100, zona:'SPS'},
+  'HAB5761':   {modelo:'HINO 2019', tm:6.5, max:100, zona:'SPS'},
+  'HBA0357':   {modelo:'HINO 2021', tm:6.5, max:100, zona:'CHO'},
+  'HAB5762':   {modelo:'HINO 2019', tm:6.5, max:100, zona:'CHO'},
+};
+
+// ═══════════════════════════ STORAGE ═══════════════════════════
+
+function getData() {
+  try { return JSON.parse(localStorage.getItem('gaspro_data') || '[]'); } catch { return []; }
+}
+function saveData(d) { localStorage.setItem('gaspro_data', JSON.stringify(d)); }
+function getConfig() {
+  try { return JSON.parse(localStorage.getItem('gaspro_cfg') || '{}'); } catch { return {}; }
+}
+function saveConfig() {
+  const cfg = getConfig();
+  cfg.sheetsUrl = document.getElementById('cfg-url').value;
+  localStorage.setItem('gaspro_cfg', JSON.stringify(cfg));
+}
+
+// ═══════════════════════════ NAV ═══════════════════════════
+
+function showPage(p) {
+  document.querySelectorAll('.page').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(el => el.classList.remove('active'));
+  document.getElementById('page-' + p).classList.add('active');
+  event.target.classList.add('active');
+  if (p === 'dash') renderDash();
+  if (p === 'config') loadConfig();
+}
+
+// ═══════════════════════════ BUILD FORM ═══════════════════════════
+
+function buildTrips() {
+  const container = document.getElementById('trips-container');
+  container.innerHTML = '';
+  for (let t = 1; t <= 4; t++) {
+    const block = document.createElement('div');
+    block.className = 'trip-block' + (t === 1 ? ' open' : '');
+    block.id = 'trip-' + t;
+    block.innerHTML = `
+      <div class="trip-header" onclick="toggleTrip(${t})">
+        <div class="trip-header-left">
+          <span class="trip-num">TRIP ${t}</span>
+          <span class="trip-summary" id="ts-${t}">Sin datos</span>
+        </div>
+        <span class="trip-toggle">▼</span>
+      </div>
+      <div class="trip-body">
+        <label class="trip-active-toggle" onclick="toggleActive(${t})">
+          <div class="toggle-switch ${t===1?'on':''}" id="tog-${t}"></div>
+          <span id="tog-lbl-${t}">${t===1?'Trip activo':'Trip inactivo — clic para activar'}</span>
+        </label>
+        <div id="trip-fields-${t}" style="${t===1?'':'display:none'}">
+          <div class="field-row triple">
+            <div class="field">
+              <label>Kms Inicial</label>
+              <input type="number" id="t${t}-kms-ini" placeholder="0" oninput="updateTripSummary(${t})">
+            </div>
+            <div class="field">
+              <label>Kms Final</label>
+              <input type="number" id="t${t}-kms-fin" placeholder="0" oninput="updateTripSummary(${t})">
+            </div>
+            <div class="field">
+              <label>Recorrido</label>
+              <input type="number" id="t${t}-kms-rec" placeholder="auto" readonly style="color:var(--accent)">
+            </div>
+          </div>
+          <div class="field-row">
+            <div class="field">
+              <label>Hora Salida</label>
+              <input type="time" id="t${t}-hora-sal">
+            </div>
+            <div class="field">
+              <label>Hora Entrada</label>
+              <input type="time" id="t${t}-hora-ent">
+            </div>
+          </div>
+          <div class="cil-section">
+            <div class="cil-header">
+              <span>Producto</span><span style="text-align:center">Salida</span><span style="text-align:center">Retorno</span>
+            </div>
+            ${buildProductRows(t)}
+          </div>
+        </div>
+      </div>`;
+    container.appendChild(block);
+  }
+  // KM auto-calc
+  for (let t = 1; t <= 4; t++) {
+    ['ini','fin'].forEach(k => {
+      document.getElementById(`t${t}-kms-${k}`).addEventListener('input', () => {
+        const ini = +document.getElementById(`t${t}-kms-ini`).value || 0;
+        const fin = +document.getElementById(`t${t}-kms-fin`).value || 0;
+        document.getElementById(`t${t}-kms-rec`).value = fin > ini ? fin - ini : '';
+        updateTripSummary(t);
+      });
+    });
+  }
+}
+
+function buildProductRows(t) {
+  let html = '';
+  let lastGrp = '';
+  PRODUCTOS.forEach(p => {
+    if (p.grp !== lastGrp) {
+      html += `<div class="cil-group-label">${p.grp}</div>`;
+      lastGrp = p.grp;
+    }
+    html += `<div class="cil-row">
+      <span class="cil-name">${p.label}</span>
+      <input type="number" id="t${t}-sal-${p.id}" min="0" placeholder="0" oninput="updateTripSummary(${t})">
+      <input type="number" id="t${t}-ret-${p.id}" min="0" placeholder="0">
+    </div>`;
+  });
+  return html;
+}
+
+function toggleTrip(t) {
+  document.getElementById('trip-' + t).classList.toggle('open');
+}
+
+function toggleActive(t) {
+  const tog = document.getElementById('tog-' + t);
+  const fields = document.getElementById('trip-fields-' + t);
+  const lbl = document.getElementById('tog-lbl-' + t);
+  const isOn = tog.classList.toggle('on');
+  fields.style.display = isOn ? '' : 'none';
+  lbl.textContent = isOn ? 'Trip activo' : 'Trip inactivo — clic para activar';
+}
+
+function updateTripSummary(t) {
+  const rec = +document.getElementById(`t${t}-kms-rec`).value || 0;
+  let salTotal = 0;
+  PRODUCTOS.forEach(p => { salTotal += +document.getElementById(`t${t}-sal-${p.id}`).value || 0; });
+  const summary = document.getElementById('ts-' + t);
+  if (rec || salTotal) {
+    summary.textContent = `${rec} kms · ${salTotal} cil. salida`;
+    summary.style.color = 'var(--accent2)';
+  } else {
+    summary.textContent = 'Sin datos';
+    summary.style.color = '';
+  }
+}
+
+// ═══════════════════════════ GUARDAR ═══════════════════════════
+
+function guardarRegistro() {
+  const fecha = document.getElementById('f-fecha').value;
+  const camion = document.getElementById('f-camion').value;
+  if (!fecha || !camion) { toast('Selecciona fecha y camión', true); return; }
+
+  const camionInfo = CAMIONES[camion];
+  const trips = [];
+
+  for (let t = 1; t <= 4; t++) {
+    const tog = document.getElementById('tog-' + t);
+    if (!tog.classList.contains('on')) continue;
+    const kmsIni = +document.getElementById(`t${t}-kms-ini`).value || 0;
+    const kmsFin = +document.getElementById(`t${t}-kms-fin`).value || 0;
+    const kmsRec = +document.getElementById(`t${t}-kms-rec`).value || 0;
+    const horaSal = document.getElementById(`t${t}-hora-sal`).value;
+    const horaEnt = document.getElementById(`t${t}-hora-ent`).value;
+
+    const salida = {}, retorno = {};
+    let cilSal = 0, cilRet = 0;
+    PRODUCTOS.forEach(p => {
+      salida[p.id] = +document.getElementById(`t${t}-sal-${p.id}`).value || 0;
+      retorno[p.id] = +document.getElementById(`t${t}-ret-${p.id}`).value || 0;
+      cilSal += salida[p.id];
+      cilRet += retorno[p.id];
+    });
+
+    const maxCil = camionInfo.max;
+    const tasaSal = maxCil > 0 ? (cilSal / maxCil) : 0;
+    const tasaRet = maxCil > 0 ? (cilRet / maxCil) : 0;
+
+    trips.push({ trip: t, kmsIni, kmsFin, kmsRec, horaSal, horaEnt, salida, retorno, cilSal, cilRet, tasaSal, tasaRet });
+  }
+
+  if (trips.length === 0) { toast('Activa al menos un trip', true); return; }
+
+  const data = getData();
+  // Remover registro previo del mismo día y camión
+  const idx = data.findIndex(r => r.fecha === fecha && r.camion === camion);
+  const record = { fecha, camion, zona: camionInfo.zona, modelo: camionInfo.modelo, trips, ts: Date.now() };
+  if (idx >= 0) data[idx] = record; else data.push(record);
+  saveData(data);
+
+  syncToSheets(record);
+  toast(`✓ Guardado — ${trips.length} trip(s) para ${camion}`);
+
+  // Reset form
+  for (let t = 1; t <= 4; t++) {
+    const tog = document.getElementById('tog-' + t);
+    const fields = document.getElementById('trip-fields-' + t);
+    const lbl = document.getElementById('tog-lbl-' + t);
+    if (t > 1 && tog.classList.contains('on')) {
+      tog.classList.remove('on');
+      fields.style.display = 'none';
+      lbl.textContent = 'Trip inactivo — clic para activar';
+    }
+    ['kms-ini','kms-fin','kms-rec'].forEach(k => document.getElementById(`t${t}-${k}`).value = '');
+    document.getElementById(`t${t}-hora-sal`).value = '';
+    document.getElementById(`t${t}-hora-ent`).value = '';
+    PRODUCTOS.forEach(p => {
+      document.getElementById(`t${t}-sal-${p.id}`).value = '';
+      document.getElementById(`t${t}-ret-${p.id}`).value = '';
+    });
+    updateTripSummary(t);
+  }
+}
+
+// ═══════════════════════════ GOOGLE SHEETS SYNC ═══════════════════════════
+
+async function syncToSheets(record) {
+  const cfg = getConfig();
+  if (!cfg.sheetsUrl) return;
+  const rows = buildSheetRows(record);
+  try {
+    await fetch(cfg.sheetsUrl, {
+      method: 'POST',
+      body: JSON.stringify({ rows }),
+    });
+  } catch (e) { /* silent fail */ }
+}
+
+function buildSheetRows(record) {
+  return record.trips.map(tr => {
+    const salVals = PRODUCTOS.map(p => tr.salida[p.id] || 0);
+    const retVals = PRODUCTOS.map(p => tr.retorno[p.id] || 0);
+    return [
+      record.fecha, record.camion, record.zona, tr.trip,
+      tr.kmsIni, tr.kmsFin, tr.kmsRec, tr.horaSal, tr.horaEnt,
+      ...salVals, ...retVals,
+      tr.cilSal, tr.cilRet,
+      Math.round(((tr.tasaSal + tr.tasaRet) / 2) * 100) / 100
+    ];
+  });
+}
+
+// ═══════════════════════════ DASHBOARD ═══════════════════════════
+
+function renderDash() {
+  const fecha = document.getElementById('d-fecha').value;
+  const filtCamion = document.getElementById('d-camion').value;
+  const data = getData();
+  let records = data;
+  if (fecha) records = records.filter(r => r.fecha === fecha);
+  if (filtCamion) records = records.filter(r => r.camion === filtCamion);
+
+  let totalTrips = 0, totalKms = 0, totalCils = 0;
+  records.forEach(r => {
+    r.trips.forEach(t => { totalTrips++; totalKms += t.kmsRec; totalCils += t.cilSal; });
+  });
+
+  document.getElementById('s-trips').textContent = totalTrips;
+  document.getElementById('s-kms').textContent = totalKms;
+  document.getElementById('s-cils').textContent = totalCils;
+
+  const tbody = document.getElementById('dash-tbody');
+  if (records.length === 0) {
+    tbody.innerHTML = '<tr><td colspan="8" class="empty-state">Sin registros para los filtros seleccionados</td></tr>';
+    return;
+  }
+
+  tbody.innerHTML = records.map(r => {
+    const nTrips = r.trips.length;
+    const kms = r.trips.reduce((a, t) => a + t.kmsRec, 0);
+    const cilSal = r.trips.reduce((a, t) => a + t.cilSal, 0);
+    const cilRet = r.trips.reduce((a, t) => a + t.cilRet, 0);
+    const tasa = r.trips.reduce((a, t) => a + (t.tasaSal + t.tasaRet) / 2, 0) / nTrips;
+    const zonaPill = r.zona === 'SPS' ? 'pill-sps' : 'pill-cho';
+    return `<tr>
+      <td><strong>${r.camion}</strong><br><small style="color:var(--text3)">${r.modelo || ''}</small></td>
+      <td><span class="pill ${zonaPill}">${r.zona}</span></td>
+      <td class="num">${nTrips}</td>
+      <td class="num">${kms}</td>
+      <td class="num">${cilSal}</td>
+      <td class="num">${cilRet}</td>
+      <td class="num">${Math.round(tasa * 100)}%</td>
+      <td><button class="detail-btn" onclick="showDetail('${r.camion}','${r.fecha}')">Ver</button></td>
+    </tr>`;
+  }).join('');
+}
+
+function showDetail(camion, fecha) {
+  const data = getData();
+  const record = data.find(r => r.camion === camion && r.fecha === fecha);
+  if (!record) return;
+
+  document.getElementById('modal-title').textContent = `${camion} — ${fecha}`;
+  let html = '';
+  record.trips.forEach(tr => {
+    html += `<div style="margin-bottom:16px;padding-bottom:14px;border-bottom:1px solid var(--border)">
+      <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:15px;color:var(--accent);margin-bottom:8px">TRIP ${tr.trip}</div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:10px;font-size:12px">
+        <div><span style="color:var(--text3)">KMS</span><br><strong>${tr.kmsRec}</strong></div>
+        <div><span style="color:var(--text3)">SALIDA</span><br><strong>${tr.horaSal || '—'}</strong></div>
+        <div><span style="color:var(--text3)">ENTRADA</span><br><strong>${tr.horaEnt || '—'}</strong></div>
+      </div>
+      <div class="tbl-wrap"><table>
+        <thead><tr><th>Producto</th><th class="num">Salida</th><th class="num">Retorno</th></tr></thead>
+        <tbody>
+          ${PRODUCTOS.filter(p => tr.salida[p.id] || tr.retorno[p.id]).map(p => `
+            <tr><td>${p.label}</td><td class="num">${tr.salida[p.id]||0}</td><td class="num">${tr.retorno[p.id]||0}</td></tr>
+          `).join('') || '<tr><td colspan="3" class="empty-state">Sin cilindros registrados</td></tr>'}
+          <tr style="font-weight:700;border-top:2px solid var(--border)">
+            <td>TOTAL</td>
+            <td class="num" style="color:var(--accent)">${tr.cilSal}</td>
+            <td class="num" style="color:var(--accent)">${tr.cilRet}</td>
+          </tr>
+        </tbody>
+      </table></div>
+    </div>`;
+  });
+  document.getElementById('modal-body').innerHTML = html;
+  document.getElementById('modal-overlay').classList.add('open');
+}
+
+function closeModal(e) {
+  if (!e || e.target === document.getElementById('modal-overlay') || e.target.id === 'modal-close') {
+    document.getElementById('modal-overlay').classList.remove('open');
+  }
+}
+
+// ═══════════════════════════ EXPORT ═══════════════════════════
+
+function exportCSV() {
+  const fecha = document.getElementById('d-fecha').value;
+  const data = getData();
+  const records = fecha ? data.filter(r => r.fecha === fecha) : data;
+  downloadCSV(records, `gaspro_${fecha || 'all'}.csv`);
+}
+
+function exportAllCSV() {
+  downloadCSV(getData(), `gaspro_mes_completo.csv`);
+}
+
+function downloadCSV(records, filename) {
+  if (records.length === 0) { toast('Sin datos para exportar', true); return; }
+  const prodHeaders = PRODUCTOS.map(p => p.id);
+  const headers = ['FECHA','CAMION','ZONA','TRIP','KMS_INI','KMS_FIN','KMS_REC','HORA_SAL','HORA_ENT',
+    ...prodHeaders.map(h => 'SAL_' + h), ...prodHeaders.map(h => 'RET_' + h),
+    'CIL_SALIDA','CIL_RETORNO','TASA_CARGA'];
+  const rows = [headers];
+  records.forEach(r => {
+    r.trips.forEach(tr => {
+      const salVals = PRODUCTOS.map(p => tr.salida[p.id] || 0);
+      const retVals = PRODUCTOS.map(p => tr.retorno[p.id] || 0);
+      rows.push([r.fecha, r.camion, r.zona, tr.trip,
+        tr.kmsIni, tr.kmsFin, tr.kmsRec, tr.horaSal, tr.horaEnt,
+        ...salVals, ...retVals, tr.cilSal, tr.cilRet,
+        Math.round(((tr.tasaSal + tr.tasaRet) / 2) * 1000) / 1000]);
+    });
+  });
+  const csv = rows.map(r => r.join(',')).join('\n');
+  const blob = new Blob(['\uFEFF' + csv], { type: 'text/csv;charset=utf-8' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = filename;
+  a.click();
+  toast('✓ CSV descargado');
+}
+
+function clearData() {
+  if (confirm('¿Borrar TODOS los registros guardados? Esta acción no se puede deshacer.')) {
+    localStorage.removeItem('gaspro_data');
+    renderDash();
+    toast('Datos borrados');
+  }
+}
+
+// ═══════════════════════════ CONFIG ═══════════════════════════
+
+function loadConfig() {
+  const cfg = getConfig();
+  if (cfg.sheetsUrl) document.getElementById('cfg-url').value = cfg.sheetsUrl;
+}
+
+async function testConnection() {
+  const url = document.getElementById('cfg-url').value;
+  if (!url) { toast('Ingresa la URL primero', true); return; }
+  const statusEl = document.getElementById('conn-status');
+  statusEl.textContent = 'Probando...';
+  statusEl.style.color = 'var(--text3)';
+  try {
+    const r = await fetch(url);
+    const d = await r.json();
+    if (d.ok) {
+      statusEl.textContent = '✓ Conexión exitosa — ' + (d.msg || 'Script activo');
+      statusEl.style.color = 'var(--green)';
+      saveConfig();
+    } else throw new Error();
+  } catch {
+    statusEl.textContent = '✗ No se pudo conectar. Verifica la URL y permisos del script.';
+    statusEl.style.color = 'var(--red)';
+  }
+}
+
+function copyScript() {
+  const code = document.getElementById('apps-script-code').innerText;
+  navigator.clipboard.writeText(code).then(() => toast('Código copiado al portapapeles'));
+}
+
+// ═══════════════════════════ TOAST ═══════════════════════════
+
+let toastTimer;
+function toast(msg, isError) {
+  const el = document.getElementById('toast');
+  el.textContent = msg;
+  el.className = 'show' + (isError ? ' error' : '');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => el.className = '', 3000);
+}
+
+// ═══════════════════════════ INIT ═══════════════════════════
+
+document.addEventListener('DOMContentLoaded', () => {
+  // Set today's date
+  const today = new Date().toISOString().split('T')[0];
+  document.getElementById('f-fecha').value = today;
+  document.getElementById('d-fecha').value = today;
+  buildTrips();
+  loadConfig();
+});
+</script>
+</body>
+</html>
