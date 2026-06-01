@@ -320,34 +320,15 @@ tr:hover td { background: var(--bg3); }
 <div id="page-config" class="page">
   <div class="card">
     <div class="card-title">🔗 Conexión Google Sheets</div>
-    <div class="field field-row single" style="margin-bottom:12px">
-      <div class="field">
-        <label>URL del Apps Script (Web App)</label>
-        <input type="url" id="cfg-url" placeholder="https://script.google.com/macros/s/..." oninput="saveConfig()">
+    <div style="display:flex;align-items:center;gap:12px;background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:14px;margin-bottom:14px">
+      <div id="conn-dot" style="width:12px;height:12px;border-radius:50%;background:var(--text3);flex-shrink:0;transition:background .3s"></div>
+      <div style="flex:1;min-width:0">
+        <div id="conn-label" style="font-weight:600;font-size:13px;color:var(--text)">Sin verificar</div>
+        <div style="font-size:10px;color:var(--text3);margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">script.google.com/macros/s/AKfycbx…/exec</div>
       </div>
     </div>
-    <div id="conn-status" style="font-size:12px;margin-bottom:10px"></div>
-    <button class="btn btn-outline btn-sm" onclick="testConnection()">Probar conexión</button>
-
-    <div style="margin-top:16px">
-      <div style="font-size:11px;color:var(--text2);font-weight:600;text-transform:uppercase;margin-bottom:8px">Código Apps Script (clic para copiar)</div>
-      <div class="code-box" onclick="copyScript()">
-function doPost(e) {
-  try {
-    var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
-    var data = JSON.parse(e.postData.contents);
-    data.rows.forEach(function(row){ sheet.appendRow(row); });
-    return ContentService.createTextOutput(JSON.stringify({ok:true,added:data.rows.length})).setMimeType(ContentService.MimeType.JSON);
-  } catch(err) {
-    return ContentService.createTextOutput(JSON.stringify({ok:false,error:err.message})).setMimeType(ContentService.MimeType.JSON);
-  }
-}
-function doGet(e) {
-  return ContentService.createTextOutput(JSON.stringify({ok:true,msg:"Gaspro Script activo"})).setMimeType(ContentService.MimeType.JSON);
-}
-      </div>
-      <div style="font-size:11px;color:var(--text3);margin-top:4px">↑ Clic para copiar</div>
-    </div>
+    <button class="btn btn-outline btn-sm" onclick="testConnection()">🔄 Probar conexión ahora</button>
+    <div id="conn-status" style="font-size:12px;margin-top:8px"></div>
   </div>
 
   <div class="card">
@@ -372,6 +353,9 @@ function doGet(e) {
 <div id="toast"></div>
 
 <script>
+// ═══════════ SHEETS URL (fija) ═══════════
+const SHEETS_URL = 'https://script.google.com/macros/s/AKfycbxqwejbe5Nccal2wYOoqtz8HYD5zBLusxikl-yPsub7nsgn3Koo6yGDJmTMXYPcwk7b/exec';
+
 // ═══════════ FLOTA ═══════════
 const FLOTA = [
   {num:'01', placa:'HAH3239',  marca:'HINO',      ciudad:'SAN PEDRO SULA', zona:'SPS', cls:'sps'},
@@ -576,8 +560,6 @@ function resetForm() {
 
 // ═══════════ SHEETS SYNC ═══════════
 async function syncToSheets(record) {
-  const cfg = getConfig();
-  if (!cfg.sheetsUrl) return;
   const rows = record.trips.map(tr => [
     record.fecha, record.placa, record.zona, record.ciudad, tr.trip,
     tr.kmsIni, tr.kmsFin, tr.kmsRec, tr.horaSal, tr.horaEnt,
@@ -585,7 +567,14 @@ async function syncToSheets(record) {
     ...PRODUCTOS.map(p => tr.retorno[p.id]||0),
     tr.cilSal, tr.cilRet
   ]);
-  try { await fetch(cfg.sheetsUrl, { method:'POST', body:JSON.stringify({rows}) }); } catch {}
+  try {
+    const res = await fetch(SHEETS_URL, { method:'POST', body:JSON.stringify({rows}) });
+    const d = await res.json();
+    if (d.ok) toast(`✓ Guardado y sincronizado con Sheets (${d.added} fila${d.added!==1?'s':''})`);
+    else toast('⚠ Guardado local — error al sincronizar', true);
+  } catch {
+    toast('⚠ Guardado local — sin conexión a Sheets', true);
+  }
 }
 
 // ═══════════ DASHBOARD ═══════════
@@ -724,26 +713,32 @@ function clearData() {
 }
 
 // ═══════════ CONFIG ═══════════
-function loadConfig() {
-  const cfg = getConfig();
-  if (cfg.sheetsUrl) document.getElementById('cfg-url').value = cfg.sheetsUrl;
-}
-function saveConfig() {
-  const cfg = getConfig();
-  cfg.sheetsUrl = document.getElementById('cfg-url').value;
-  localStorage.setItem('gaspro_cfg', JSON.stringify(cfg));
-}
+// Config is hardcoded — no loadConfig needed
 async function testConnection() {
-  const url = document.getElementById('cfg-url').value;
-  if (!url) { toast('Ingresa la URL primero',true); return; }
-  const el = document.getElementById('conn-status');
-  el.textContent = 'Probando...'; el.style.color='var(--text3)';
+  const dot = document.getElementById('conn-dot');
+  const label = document.getElementById('conn-label');
+  const status = document.getElementById('conn-status');
+  dot.style.background = 'var(--accent)';
+  label.textContent = 'Verificando...';
+  label.style.color = 'var(--text)';
+  status.textContent = '';
   try {
-    const r = await fetch(url);
+    const r = await fetch(SHEETS_URL);
     const d = await r.json();
-    if (d.ok) { el.textContent='✓ Conexión exitosa — '+( d.msg||'Script activo'); el.style.color='var(--green)'; saveConfig(); }
-    else throw new Error();
-  } catch { el.textContent='✗ No se pudo conectar. Verifica URL y permisos.'; el.style.color='var(--red)'; }
+    if (d.ok) {
+      dot.style.background = 'var(--green)';
+      label.textContent = '✓ Conectado — Sheets listo';
+      label.style.color = 'var(--green)';
+      status.textContent = d.msg || 'Gaspro Script activo';
+      status.style.color = 'var(--text3)';
+    } else throw new Error('Script error');
+  } catch(e) {
+    dot.style.background = 'var(--red)';
+    label.textContent = '✗ Sin conexión con Google Sheets';
+    label.style.color = 'var(--red)';
+    status.textContent = 'Verifica que el script esté publicado con acceso "Cualquier persona"';
+    status.style.color = 'var(--text3)';
+  }
 }
 function copyScript() {
   navigator.clipboard.writeText(document.querySelector('.code-box').innerText)
@@ -779,7 +774,8 @@ document.addEventListener('DOMContentLoaded', ()=>{
   document.getElementById('f-fecha').value = today;
   document.getElementById('d-fecha').value = today;
   buildTrips();
-  loadConfig();
+  // Auto-verify Sheets connection silently on load
+  setTimeout(testConnection, 1000);
 });
 </script>
 </body>
