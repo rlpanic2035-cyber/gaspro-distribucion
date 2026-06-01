@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<title>Gaspro — Distribución</title>
+<title>Gaspro — Distribución v2</title>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -16,639 +16,355 @@
   --green: #2ea043;
   --red: #da3633;
   --blue: #388bfd;
+  --purple: #8b5cf6;
+  --teal: #0d9488;
+  --orange: #ea580c;
   --text: #e6edf3;
   --text2: #8b949e;
   --text3: #6e7681;
   --radius: 8px;
-  --shadow: 0 4px 24px rgba(0,0,0,0.4);
 }
-
 * { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Barlow', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; font-size: 14px; }
 
-body {
-  font-family: 'Barlow', sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  min-height: 100vh;
-  font-size: 14px;
-}
-
-/* ── NAV ── */
+/* NAV */
 #nav {
   background: var(--bg2);
   border-bottom: 2px solid var(--accent);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 16px;
-  height: 52px;
-  position: sticky;
-  top: 0;
-  z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 16px; height: 52px;
+  position: sticky; top: 0; z-index: 100;
 }
-#nav .logo {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-weight: 800;
-  font-size: 20px;
-  color: var(--accent);
-  letter-spacing: 1px;
-}
-#nav .logo span { color: var(--text2); font-weight: 400; font-size: 13px; margin-left: 8px; }
+#nav .logo { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 20px; color: var(--accent); letter-spacing: 1px; }
+#nav .logo span { color: var(--text2); font-weight: 400; font-size: 12px; margin-left: 8px; }
 .nav-tabs { display: flex; gap: 4px; }
-.nav-tab {
-  padding: 6px 14px;
-  border-radius: var(--radius);
-  cursor: pointer;
-  font-weight: 600;
-  font-size: 13px;
-  color: var(--text2);
-  border: none;
-  background: transparent;
-  transition: all .2s;
-}
+.nav-tab { padding: 6px 12px; border-radius: var(--radius); cursor: pointer; font-weight: 600; font-size: 12px; color: var(--text2); border: none; background: transparent; transition: all .2s; font-family: 'Barlow Condensed', sans-serif; letter-spacing: .4px; text-transform: uppercase; }
 .nav-tab:hover { color: var(--text); background: var(--bg3); }
 .nav-tab.active { background: var(--accent); color: #000; }
 
-/* ── PAGES ── */
-.page { display: none; padding: 20px 16px; max-width: 680px; margin: 0 auto; }
+/* PAGES */
+.page { display: none; padding: 18px 16px; max-width: 700px; margin: 0 auto; }
 .page.active { display: block; }
 
-/* ── CARDS ── */
-.card {
-  background: var(--bg2);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 18px;
-  margin-bottom: 14px;
-}
-.card-title {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-weight: 700;
-  font-size: 16px;
-  color: var(--accent);
-  margin-bottom: 14px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  text-transform: uppercase;
-  letter-spacing: .5px;
-}
-.card-title .badge {
-  background: var(--accent);
-  color: #000;
-  font-size: 11px;
-  padding: 2px 7px;
-  border-radius: 20px;
-  font-weight: 800;
-}
+/* CARDS */
+.card { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px; margin-bottom: 14px; }
+.card-title { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 15px; color: var(--accent); margin-bottom: 14px; display: flex; align-items: center; gap: 8px; text-transform: uppercase; letter-spacing: .5px; }
 
-/* ── FORM ELEMENTS ── */
+/* FIELDS */
 .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px; }
 .field-row.single { grid-template-columns: 1fr; }
 .field-row.triple { grid-template-columns: 1fr 1fr 1fr; }
-
 .field { display: flex; flex-direction: column; gap: 4px; }
-.field label {
-  font-size: 11px;
-  font-weight: 600;
-  color: var(--text2);
-  text-transform: uppercase;
-  letter-spacing: .5px;
-}
-.field input, .field select {
-  background: var(--bg3);
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  color: var(--text);
-  font-family: 'Barlow', sans-serif;
-  font-size: 14px;
-  padding: 8px 10px;
-  width: 100%;
-  transition: border-color .2s;
-  -webkit-appearance: none;
-}
-.field input:focus, .field select:focus {
-  outline: none;
-  border-color: var(--accent);
-}
+.field label { font-size: 11px; font-weight: 600; color: var(--text2); text-transform: uppercase; letter-spacing: .5px; }
+.field input, .field select { background: var(--bg3); border: 1px solid var(--border); border-radius: 6px; color: var(--text); font-family: 'Barlow', sans-serif; font-size: 14px; padding: 8px 10px; width: 100%; transition: border-color .2s; -webkit-appearance: none; }
+.field input:focus, .field select:focus { outline: none; border-color: var(--accent); }
 .field input[type=number] { text-align: right; }
 
-/* ── CILINDROS TABLE ── */
-.cil-section {
-  margin-top: 12px;
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  overflow: hidden;
-}
-.cil-header {
-  display: grid;
-  grid-template-columns: 1fr 90px 90px;
-  background: var(--bg3);
-  padding: 6px 10px;
-  font-size: 11px;
-  font-weight: 700;
-  color: var(--text2);
-  text-transform: uppercase;
-  letter-spacing: .5px;
-  gap: 6px;
-}
-.cil-group-label {
-  background: #1e2a3a;
-  padding: 4px 10px;
-  font-size: 10px;
-  font-weight: 700;
-  color: var(--blue);
-  text-transform: uppercase;
-  letter-spacing: .8px;
-}
-.cil-row {
-  display: grid;
-  grid-template-columns: 1fr 90px 90px;
-  gap: 6px;
-  align-items: center;
-  padding: 4px 10px;
-  border-top: 1px solid var(--border);
-}
+/* CAMION CARD selector */
+.camion-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.camion-card { border: 2px solid var(--border); border-radius: 8px; padding: 10px 12px; cursor: pointer; transition: all .2s; background: var(--bg3); }
+.camion-card:hover { border-color: var(--accent); }
+.camion-card.selected { border-color: var(--accent); background: #2a1f0a; }
+.camion-num { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 22px; color: var(--accent); line-height: 1; }
+.camion-placa { font-size: 13px; font-weight: 600; color: var(--text); margin-top: 2px; }
+.camion-info { font-size: 11px; color: var(--text3); margin-top: 2px; }
+.zona-badge { display: inline-block; padding: 2px 7px; border-radius: 20px; font-size: 10px; font-weight: 700; margin-top: 4px; }
+
+/* ZONA COLORS */
+.zona-sps { background: #1a3a5c; color: #60a5fa; }
+.zona-cei { background: #1a3a2a; color: #4ade80; }
+.zona-tgu { background: #3a1a5c; color: #c084fc; }
+.zona-cho { background: #3a2a1a; color: #fb923c; }
+
+/* PRODUCTOS TABLE */
+.cil-section { margin-top: 12px; border: 1px solid var(--border); border-radius: 6px; overflow: hidden; }
+.cil-header { display: grid; grid-template-columns: 1fr 80px 80px; background: var(--bg3); padding: 6px 10px; font-size: 10px; font-weight: 700; color: var(--text2); text-transform: uppercase; letter-spacing: .5px; gap: 6px; }
+.cil-group-label { background: #1a2235; padding: 4px 10px; font-size: 10px; font-weight: 700; color: var(--blue); text-transform: uppercase; letter-spacing: .8px; }
+.cil-row { display: grid; grid-template-columns: 1fr 80px 80px; gap: 6px; align-items: center; padding: 4px 10px; border-top: 1px solid var(--border); }
 .cil-row:hover { background: var(--bg3); }
 .cil-name { font-size: 12px; font-weight: 500; color: var(--text); }
-.cil-row input {
-  background: var(--bg3);
-  border: 1px solid var(--border);
-  border-radius: 4px;
-  color: var(--text);
-  font-size: 13px;
-  padding: 4px 6px;
-  text-align: center;
-  width: 100%;
-  font-family: 'Barlow', sans-serif;
-}
+.cil-row input { background: var(--bg3); border: 1px solid var(--border); border-radius: 4px; color: var(--text); font-size: 13px; padding: 4px 6px; text-align: center; width: 100%; font-family: 'Barlow', sans-serif; }
 .cil-row input:focus { outline: none; border-color: var(--accent); }
 
-/* ── TRIP ACCORDION ── */
-.trip-block {
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  margin-bottom: 10px;
-  overflow: hidden;
-}
-.trip-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 10px 14px;
-  background: var(--bg3);
-  cursor: pointer;
-  user-select: none;
-}
+/* TRIPS */
+.trip-block { border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 10px; overflow: hidden; }
+.trip-header { display: flex; align-items: center; justify-content: space-between; padding: 10px 14px; background: var(--bg3); cursor: pointer; user-select: none; }
 .trip-header-left { display: flex; align-items: center; gap: 10px; }
-.trip-num {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-weight: 800;
-  font-size: 18px;
-  color: var(--accent);
-}
+.trip-num { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 18px; color: var(--accent); }
 .trip-summary { font-size: 12px; color: var(--text2); }
-.trip-toggle {
-  font-size: 16px;
-  color: var(--text3);
-  transition: transform .2s;
-}
+.trip-toggle { font-size: 16px; color: var(--text3); transition: transform .2s; }
 .trip-block.open .trip-toggle { transform: rotate(180deg); }
-.trip-body {
-  display: none;
-  padding: 14px;
-  border-top: 1px solid var(--border);
-}
+.trip-body { display: none; padding: 14px; border-top: 1px solid var(--border); }
 .trip-block.open .trip-body { display: block; }
 
-.trip-active-toggle {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 12px;
-  font-size: 13px;
-  color: var(--text2);
-  cursor: pointer;
-}
-.toggle-switch {
-  width: 36px; height: 20px;
-  background: var(--border);
-  border-radius: 20px;
-  position: relative;
-  transition: background .2s;
-  flex-shrink: 0;
-}
-.toggle-switch::after {
-  content: '';
-  width: 14px; height: 14px;
-  background: #fff;
-  border-radius: 50%;
-  position: absolute;
-  top: 3px; left: 3px;
-  transition: left .2s;
-}
+.toggle-row { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; cursor: pointer; }
+.toggle-switch { width: 36px; height: 20px; background: var(--border); border-radius: 20px; position: relative; transition: background .2s; flex-shrink: 0; }
+.toggle-switch::after { content: ''; width: 14px; height: 14px; background: #fff; border-radius: 50%; position: absolute; top: 3px; left: 3px; transition: left .2s; }
 .toggle-switch.on { background: var(--green); }
 .toggle-switch.on::after { left: 19px; }
+.toggle-lbl { font-size: 12px; color: var(--text2); }
 
-/* ── BUTTONS ── */
-.btn {
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  font-family: 'Barlow Condensed', sans-serif;
-  font-weight: 700;
-  font-size: 15px;
-  letter-spacing: .5px;
-  padding: 10px 20px;
-  transition: all .15s;
-  text-transform: uppercase;
-}
-.btn-primary { background: var(--accent); color: #000; width: 100%; margin-top: 6px; }
+/* BUTTONS */
+.btn { border: none; border-radius: 6px; cursor: pointer; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 15px; letter-spacing: .5px; padding: 10px 20px; transition: all .15s; text-transform: uppercase; }
+.btn-primary { background: var(--accent); color: #000; width: 100%; margin-top: 6px; font-size: 16px; padding: 12px; }
 .btn-primary:hover { background: var(--accent2); }
 .btn-success { background: var(--green); color: #fff; }
 .btn-success:hover { opacity: .9; }
-.btn-outline {
-  background: transparent;
-  border: 1px solid var(--border);
-  color: var(--text2);
-}
+.btn-outline { background: transparent; border: 1px solid var(--border); color: var(--text2); }
 .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
 .btn-sm { font-size: 12px; padding: 6px 12px; }
+.btn-danger { background: transparent; border: 1px solid var(--red); color: var(--red); }
 
-.submit-zone { margin-top: 8px; }
-.submit-note { font-size: 11px; color: var(--text3); text-align: center; margin-top: 8px; }
+/* STATS */
+.stat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 14px; }
+.stat-card { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); padding: 10px 12px; text-align: center; }
+.stat-val { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 26px; color: var(--accent); line-height: 1; }
+.stat-lbl { font-size: 10px; color: var(--text2); margin-top: 2px; text-transform: uppercase; letter-spacing: .4px; }
 
-/* ── STATUS TOAST ── */
-#toast {
-  position: fixed;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%) translateY(80px);
-  background: var(--green);
-  color: #fff;
-  padding: 10px 24px;
-  border-radius: 20px;
-  font-weight: 600;
-  font-size: 14px;
-  z-index: 999;
-  transition: transform .3s;
-  white-space: nowrap;
-}
-#toast.show { transform: translateX(-50%) translateY(0); }
-#toast.error { background: var(--red); }
+/* DASH FILTERS */
+.dash-top { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 14px; flex-wrap: wrap; gap: 10px; }
+.dash-title { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 22px; }
+.filter-row { display: flex; gap: 8px; flex-wrap: wrap; }
+.filter-row input, .filter-row select { background: var(--bg2); border: 1px solid var(--border); border-radius: 6px; color: var(--text); font-family: 'Barlow', sans-serif; font-size: 13px; padding: 7px 10px; }
+.filter-row input:focus, .filter-row select:focus { outline: none; border-color: var(--accent); }
 
-/* ── DASHBOARD ── */
-.dash-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 16px;
-  flex-wrap: gap;
-  gap: 10px;
-}
-.dash-title {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-weight: 800;
-  font-size: 22px;
-}
-.dash-filters { display: flex; gap: 8px; flex-wrap: wrap; }
-.dash-filters input, .dash-filters select {
-  background: var(--bg2);
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  color: var(--text);
-  font-family: 'Barlow', sans-serif;
-  font-size: 13px;
-  padding: 7px 10px;
-}
-.dash-filters input:focus, .dash-filters select:focus { outline: none; border-color: var(--accent); }
-
-.stat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 14px; }
-.stat-card {
-  background: var(--bg2);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 12px 14px;
-  text-align: center;
-}
-.stat-val {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-weight: 800;
-  font-size: 28px;
-  color: var(--accent);
-  line-height: 1;
-}
-.stat-lbl { font-size: 11px; color: var(--text2); margin-top: 2px; text-transform: uppercase; letter-spacing: .4px; }
-
-/* ── TABLE ── */
+/* TABLE */
 .tbl-wrap { overflow-x: auto; border-radius: var(--radius); border: 1px solid var(--border); }
 table { width: 100%; border-collapse: collapse; font-size: 12px; }
 thead { background: var(--bg3); }
-th {
-  padding: 8px 10px;
-  text-align: left;
-  font-size: 10px;
-  font-weight: 700;
-  color: var(--text2);
-  text-transform: uppercase;
-  letter-spacing: .5px;
-  white-space: nowrap;
-}
-td {
-  padding: 8px 10px;
-  border-top: 1px solid var(--border);
-  white-space: nowrap;
-}
+th { padding: 8px 10px; text-align: left; font-size: 10px; font-weight: 700; color: var(--text2); text-transform: uppercase; letter-spacing: .5px; white-space: nowrap; }
+td { padding: 8px 10px; border-top: 1px solid var(--border); white-space: nowrap; }
 tr:hover td { background: var(--bg3); }
-.pill {
-  display: inline-block;
-  padding: 2px 8px;
-  border-radius: 20px;
-  font-size: 10px;
-  font-weight: 700;
-}
-.pill-sps { background: #1a3a5c; color: var(--blue); }
-.pill-cho { background: #3a1a1a; color: #f87171; }
 .num { text-align: right; font-variant-numeric: tabular-nums; }
-.empty-state {
-  text-align: center;
-  padding: 40px;
-  color: var(--text3);
-  font-style: italic;
-}
-.detail-btn {
-  background: none;
-  border: none;
-  color: var(--blue);
-  cursor: pointer;
-  font-size: 12px;
-  text-decoration: underline;
-  font-family: 'Barlow', sans-serif;
-}
+.empty-state { text-align: center; padding: 40px; color: var(--text3); font-style: italic; }
+.detail-btn { background: none; border: none; color: var(--blue); cursor: pointer; font-size: 11px; text-decoration: underline; font-family: 'Barlow', sans-serif; }
 
-/* ── MODAL ── */
-#modal-overlay {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,.7);
-  z-index: 200;
-  overflow-y: auto;
-  padding: 20px;
-}
+/* ZONA SECTION HEADER in dash */
+.zona-section { margin-bottom: 16px; }
+.zona-header { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 13px; text-transform: uppercase; letter-spacing: 1px; padding: 6px 10px; border-radius: 6px 6px 0 0; border: 1px solid var(--border); border-bottom: none; }
+.zona-header.sps { background: #1a3a5c; color: #60a5fa; }
+.zona-header.cei { background: #1a3a2a; color: #4ade80; }
+.zona-header.tgu { background: #3a1a5c; color: #c084fc; }
+.zona-header.cho { background: #3a2a1a; color: #fb923c; }
+
+/* MODAL */
+#modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.75); z-index: 200; overflow-y: auto; padding: 20px; }
 #modal-overlay.open { display: flex; align-items: flex-start; justify-content: center; }
-#modal-box {
-  background: var(--bg2);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 20px;
-  width: 100%;
-  max-width: 600px;
-  margin: auto;
-}
-#modal-title {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-weight: 800;
-  font-size: 20px;
-  color: var(--accent);
-  margin-bottom: 14px;
-}
-#modal-close {
-  float: right;
-  background: none;
-  border: none;
-  color: var(--text2);
-  font-size: 22px;
-  cursor: pointer;
-  line-height: 1;
-}
+#modal-box { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; width: 100%; max-width: 580px; margin: auto; }
+#modal-title { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 20px; color: var(--accent); margin-bottom: 14px; display: flex; justify-content: space-between; align-items: center; }
+#modal-close { background: none; border: none; color: var(--text2); font-size: 24px; cursor: pointer; line-height: 1; }
 
-/* ── CONFIG PAGE ── */
-.config-section { margin-bottom: 20px; }
-.config-section h3 {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-weight: 700;
-  font-size: 15px;
-  color: var(--text2);
-  text-transform: uppercase;
-  letter-spacing: .5px;
-  margin-bottom: 10px;
-}
-.sheets-steps { counter-reset: steps; }
-.step {
-  counter-increment: steps;
-  display: flex;
-  gap: 12px;
-  align-items: flex-start;
-  margin-bottom: 12px;
-  font-size: 13px;
-  color: var(--text2);
-  line-height: 1.5;
-}
-.step::before {
-  content: counter(steps);
-  background: var(--accent);
-  color: #000;
-  font-weight: 800;
-  font-size: 12px;
-  width: 22px;
-  height: 22px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  font-family: 'Barlow Condensed', sans-serif;
-}
-.code-box {
-  background: var(--bg3);
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  padding: 10px 12px;
-  font-family: monospace;
-  font-size: 11px;
-  color: var(--accent2);
-  word-break: break-all;
-  margin-top: 4px;
-}
+/* CONFIG */
+.step-list { counter-reset: s; }
+.step-item { counter-increment: s; display: flex; gap: 12px; margin-bottom: 12px; font-size: 13px; color: var(--text2); line-height: 1.5; }
+.step-item::before { content: counter(s); background: var(--accent); color: #000; font-weight: 800; font-size: 11px; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-family: 'Barlow Condensed', sans-serif; }
+.code-box { background: var(--bg3); border: 1px solid var(--border); border-radius: 6px; padding: 10px 12px; font-family: monospace; font-size: 11px; color: var(--accent2); word-break: break-all; margin-top: 6px; cursor: pointer; }
+
+/* TOAST */
+#toast { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%) translateY(80px); background: var(--green); color: #fff; padding: 10px 24px; border-radius: 20px; font-weight: 600; font-size: 14px; z-index: 999; transition: transform .3s; white-space: nowrap; pointer-events: none; }
+#toast.show { transform: translateX(-50%) translateY(0); }
+#toast.error { background: var(--red); }
+
+/* SUBMIT NOTE */
+.submit-note { font-size: 11px; color: var(--text3); text-align: center; margin-top: 8px; }
 
 @media (max-width: 480px) {
-  .stat-grid { grid-template-columns: repeat(3, 1fr); }
-  .stat-val { font-size: 22px; }
-  .nav-tab { padding: 6px 10px; font-size: 12px; }
-  .field-row.triple { grid-template-columns: 1fr 1fr; }
+  .stat-grid { grid-template-columns: repeat(2, 1fr); }
+  .camion-grid { grid-template-columns: 1fr 1fr; }
+  .nav-tab { padding: 5px 8px; font-size: 11px; }
 }
 </style>
 </head>
 <body>
 
 <div id="nav">
-  <div class="logo">GASPRO <span>Distribución HN</span></div>
+  <div class="logo">GASPRO <span>Distribución HN v2</span></div>
   <div class="nav-tabs">
-    <button class="nav-tab active" onclick="showPage('form')">📋 Motorista</button>
-    <button class="nav-tab" onclick="showPage('dash')">📊 Despacho</button>
-    <button class="nav-tab" onclick="showPage('config')">⚙️ Config</button>
+    <button class="nav-tab active" onclick="showPage('form',this)">📋 Motorista</button>
+    <button class="nav-tab" onclick="showPage('dash',this)">📊 Despacho</button>
+    <button class="nav-tab" onclick="showPage('config',this)">⚙️ Config</button>
   </div>
 </div>
 
-<!-- ═══════════════════════════════ FORMULARIO MOTORISTA ═══════════════════════════ -->
+<!-- ══════════════════════ FORMULARIO MOTORISTA ══════════════════════ -->
 <div id="page-form" class="page active">
 
   <div class="card">
-    <div class="card-title">🚛 Registro de Trip</div>
-
-    <div class="field-row">
+    <div class="card-title">📅 Fecha y Camión</div>
+    <div class="field-row single" style="margin-bottom:14px">
       <div class="field">
         <label>Fecha</label>
         <input type="date" id="f-fecha">
       </div>
-      <div class="field">
-        <label>Camión</label>
-        <select id="f-camion">
-          <option value="">Seleccionar...</option>
-          <option value="HAH3239">HAH3239 – HINO 2019 3.5T (SPS)</option>
-          <option value="HAB5763">HAB5763 – HINO 2019 3.5T (SPS)</option>
-          <option value="HAU7369">HAU7369 – HINO 2020 6.5T (SPS)</option>
-          <option value="C0-939BQJ">C0-939BQJ – ISUZU 2017 6.5T (SPS)</option>
-          <option value="HAB5761">HAB5761 – HINO 2019 6.5T (SPS)</option>
-          <option value="HBA0357">HBA0357 – HINO 2021 6.5T (CHO)</option>
-          <option value="HAB5762">HAB5762 – HINO 2019 6.5T (CHO)</option>
-        </select>
+    </div>
+
+    <div style="font-size:11px;font-weight:600;color:var(--text2);text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px">Selecciona tu camión</div>
+
+    <!-- SAN PEDRO SULA -->
+    <div style="font-size:10px;font-weight:700;color:#60a5fa;text-transform:uppercase;letter-spacing:.8px;margin-bottom:6px;padding-left:2px">📍 San Pedro Sula</div>
+    <div class="camion-grid" style="margin-bottom:12px">
+      <div class="camion-card" onclick="selectCamion(this,'HAH3239','HINO','SAN PEDRO SULA','sps')" data-placa="HAH3239">
+        <div class="camion-num">#01</div>
+        <div class="camion-placa">HAH3239</div>
+        <div class="camion-info">HINO</div>
+        <span class="zona-badge zona-sps">SPS</span>
+      </div>
+      <div class="camion-card" onclick="selectCamion(this,'HAB5763','HINO','SAN PEDRO SULA','sps')" data-placa="HAB5763">
+        <div class="camion-num">#02</div>
+        <div class="camion-placa">HAB5763</div>
+        <div class="camion-info">HINO</div>
+        <span class="zona-badge zona-sps">SPS</span>
+      </div>
+      <div class="camion-card" onclick="selectCamion(this,'HAB5761','HINO','SAN PEDRO SULA','sps')" data-placa="HAB5761">
+        <div class="camion-num">#05</div>
+        <div class="camion-placa">HAB5761</div>
+        <div class="camion-info">HINO</div>
+        <span class="zona-badge zona-sps">SPS</span>
+      </div>
+      <div class="camion-card" onclick="selectCamion(this,'HAU7369','HINO','SAN PEDRO SULA','sps')" data-placa="HAU7369">
+        <div class="camion-num">#22</div>
+        <div class="camion-placa">HAU7369</div>
+        <div class="camion-info">HINO</div>
+        <span class="zona-badge zona-sps">SPS</span>
+      </div>
+    </div>
+
+    <!-- LA CEIBA -->
+    <div style="font-size:10px;font-weight:700;color:#4ade80;text-transform:uppercase;letter-spacing:.8px;margin-bottom:6px;padding-left:2px">📍 La Ceiba</div>
+    <div class="camion-grid" style="margin-bottom:12px">
+      <div class="camion-card" onclick="selectCamion(this,'HAH3236','HINO 300','LA CEIBA','cei')" data-placa="HAH3236">
+        <div class="camion-num">#03</div>
+        <div class="camion-placa">HAH3236</div>
+        <div class="camion-info">HINO 300</div>
+        <span class="zona-badge zona-cei">CEI</span>
+      </div>
+      <div class="camion-card" onclick="selectCamion(this,'TCB3937','HINO 500','LA CEIBA','cei')" data-placa="TCB3937">
+        <div class="camion-num">#09</div>
+        <div class="camion-placa">TCB3937</div>
+        <div class="camion-info">HINO 500</div>
+        <span class="zona-badge zona-cei">CEI</span>
+      </div>
+    </div>
+
+    <!-- TEGUCIGALPA -->
+    <div style="font-size:10px;font-weight:700;color:#c084fc;text-transform:uppercase;letter-spacing:.8px;margin-bottom:6px;padding-left:2px">📍 Tegucigalpa</div>
+    <div class="camion-grid" style="margin-bottom:12px">
+      <div class="camion-card" onclick="selectCamion(this,'HAU-2026','HINO','TEGUCIGALPA','tgu')" data-placa="HAU-2026">
+        <div class="camion-num">#04</div>
+        <div class="camion-placa">HAU-2026</div>
+        <div class="camion-info">HINO</div>
+        <span class="zona-badge zona-tgu">TGU</span>
+      </div>
+      <div class="camion-card" onclick="selectCamion(this,'TEA-7469','ISUZU QKR','TEGUCIGALPA','tgu')" data-placa="TEA-7469">
+        <div class="camion-num">#10</div>
+        <div class="camion-placa">TEA-7469</div>
+        <div class="camion-info">ISUZU QKR</div>
+        <span class="zona-badge zona-tgu">TGU</span>
+      </div>
+    </div>
+
+    <!-- CHOLUTECA -->
+    <div style="font-size:10px;font-weight:700;color:#fb923c;text-transform:uppercase;letter-spacing:.8px;margin-bottom:6px;padding-left:2px">📍 Choluteca</div>
+    <div class="camion-grid">
+      <div class="camion-card" onclick="selectCamion(this,'TEA9970','HINO','CHOLUTECA','cho')" data-placa="TEA9970">
+        <div class="camion-num">#23</div>
+        <div class="camion-placa">TEA9970</div>
+        <div class="camion-info">HINO</div>
+        <span class="zona-badge zona-cho">CHO</span>
       </div>
     </div>
   </div>
 
-  <!-- TRIPS 1-4 -->
+  <!-- TRIPS -->
   <div id="trips-container"></div>
 
-  <div class="submit-zone">
+  <div>
     <button class="btn btn-primary" onclick="guardarRegistro()">✓ GUARDAR REGISTRO DEL DÍA</button>
-    <div class="submit-note">Los datos se guardan localmente y se sincronizan si hay conexión</div>
+    <div class="submit-note">Los datos se guardan localmente y se sincronizan si hay conexión a internet</div>
   </div>
 </div>
 
-<!-- ═══════════════════════════════ DASHBOARD DESPACHADOR ═══════════════════════════ -->
+<!-- ══════════════════════ DASHBOARD DESPACHADOR ══════════════════════ -->
 <div id="page-dash" class="page">
-
-  <div class="dash-header">
+  <div class="dash-top">
     <div class="dash-title">Panel de Despacho</div>
-    <div class="dash-filters">
+    <div class="filter-row">
       <input type="date" id="d-fecha" onchange="renderDash()">
-      <select id="d-camion" onchange="renderDash()">
-        <option value="">Todos los camiones</option>
-        <option value="HAH3239">HAH3239</option>
-        <option value="HAB5763">HAB5763</option>
-        <option value="HAU7369">HAU7369</option>
-        <option value="C0-939BQJ">C0-939BQJ</option>
-        <option value="HAB5761">HAB5761</option>
-        <option value="HBA0357">HBA0357</option>
-        <option value="HAB5762">HAB5762</option>
+      <select id="d-zona" onchange="renderDash()">
+        <option value="">Todas las zonas</option>
+        <option value="SAN PEDRO SULA">San Pedro Sula</option>
+        <option value="LA CEIBA">La Ceiba</option>
+        <option value="TEGUCIGALPA">Tegucigalpa</option>
+        <option value="CHOLUTECA">Choluteca</option>
       </select>
     </div>
   </div>
 
   <div class="stat-grid">
+    <div class="stat-card"><div class="stat-val" id="s-camiones">0</div><div class="stat-lbl">Camiones</div></div>
     <div class="stat-card"><div class="stat-val" id="s-trips">0</div><div class="stat-lbl">Trips</div></div>
-    <div class="stat-card"><div class="stat-val" id="s-kms">0</div><div class="stat-lbl">Kms Total</div></div>
+    <div class="stat-card"><div class="stat-val" id="s-kms">0</div><div class="stat-lbl">Kms</div></div>
     <div class="stat-card"><div class="stat-val" id="s-cils">0</div><div class="stat-lbl">Cilindros</div></div>
   </div>
 
-  <div class="tbl-wrap">
-    <table>
-      <thead>
-        <tr>
-          <th>Camión</th>
-          <th>Zona</th>
-          <th>Trips</th>
-          <th class="num">Kms</th>
-          <th class="num">Cil. Salida</th>
-          <th class="num">Cil. Retorno</th>
-          <th class="num">Tasa %</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody id="dash-tbody">
-        <tr><td colspan="8" class="empty-state">Selecciona una fecha para ver registros</td></tr>
-      </tbody>
-    </table>
-  </div>
+  <div id="dash-zonas"></div>
 
-  <div style="margin-top:14px; display:flex; gap:8px; flex-wrap:wrap;">
-    <button class="btn btn-success btn-sm" onclick="exportCSV()">⬇ Exportar CSV</button>
-    <button class="btn btn-outline btn-sm" onclick="exportAllCSV()">⬇ Exportar Todo el Mes</button>
-    <button class="btn btn-outline btn-sm" style="color:var(--red);border-color:var(--red)" onclick="clearData()">🗑 Borrar datos</button>
+  <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px">
+    <button class="btn btn-success btn-sm" onclick="exportCSV()">⬇ Exportar CSV del día</button>
+    <button class="btn btn-outline btn-sm" onclick="exportAllCSV()">⬇ Exportar mes completo</button>
+    <button class="btn btn-danger btn-sm" onclick="clearData()">🗑 Borrar datos</button>
   </div>
 </div>
 
-<!-- ═══════════════════════════════ CONFIGURACIÓN ═══════════════════════════════════ -->
+<!-- ══════════════════════ CONFIGURACIÓN ══════════════════════ -->
 <div id="page-config" class="page">
-
   <div class="card">
-    <div class="card-title">🔗 Conexión con Google Sheets</div>
-    <div class="config-section">
-      <div class="field field-row single" style="margin-bottom:12px">
-        <div class="field">
-          <label>URL del Google Apps Script (Web App)</label>
-          <input type="url" id="cfg-url" placeholder="https://script.google.com/macros/s/..." oninput="saveConfig()">
-        </div>
+    <div class="card-title">🔗 Conexión Google Sheets</div>
+    <div class="field field-row single" style="margin-bottom:12px">
+      <div class="field">
+        <label>URL del Apps Script (Web App)</label>
+        <input type="url" id="cfg-url" placeholder="https://script.google.com/macros/s/..." oninput="saveConfig()">
       </div>
-      <div id="conn-status" style="font-size:12px;color:var(--text3);margin-bottom:12px"></div>
-      <button class="btn btn-outline btn-sm" onclick="testConnection()">Probar conexión</button>
     </div>
+    <div id="conn-status" style="font-size:12px;margin-bottom:10px"></div>
+    <button class="btn btn-outline btn-sm" onclick="testConnection()">Probar conexión</button>
 
-    <div class="config-section">
-      <h3>Cómo configurar Google Sheets</h3>
-      <div class="sheets-steps">
-        <div class="step">Crea un Google Sheet nuevo. En la primera hoja, nombra las columnas: <code style="color:var(--accent2)">fecha, camion, zona, trip, kms_ini, kms_fin, kms_rec, hora_sal, hora_ent, [productos_salida x24], [productos_retorno x24], cil_salida, cil_retorno, tasa_carga</code></div>
-        <div class="step">En el Sheet, ve a <strong>Extensiones → Apps Script</strong> y pega el código de abajo.</div>
-        <div class="step">Haz clic en <strong>Implementar → Nueva implementación → Aplicación web</strong>. Acceso: "Cualquier persona". Copia la URL generada.</div>
-        <div class="step">Pega esa URL en el campo de arriba y presiona "Probar conexión".</div>
-      </div>
-      <div style="margin-top:10px">
-        <div style="font-size:11px;color:var(--text2);margin-bottom:6px;font-weight:600">CÓDIGO APPS SCRIPT:</div>
-        <div class="code-box" id="apps-script-code" style="cursor:pointer" onclick="copyScript()" title="Clic para copiar">
+    <div style="margin-top:16px">
+      <div style="font-size:11px;color:var(--text2);font-weight:600;text-transform:uppercase;margin-bottom:8px">Código Apps Script (clic para copiar)</div>
+      <div class="code-box" onclick="copyScript()">
 function doPost(e) {
-  var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
-  var data = JSON.parse(e.postData.contents);
-  var rows = data.rows;
-  rows.forEach(function(row) { sheet.appendRow(row); });
-  return ContentService.createTextOutput(JSON.stringify({ok:true}))
-    .setMimeType(ContentService.MimeType.JSON);
+  try {
+    var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+    var data = JSON.parse(e.postData.contents);
+    data.rows.forEach(function(row){ sheet.appendRow(row); });
+    return ContentService.createTextOutput(JSON.stringify({ok:true,added:data.rows.length})).setMimeType(ContentService.MimeType.JSON);
+  } catch(err) {
+    return ContentService.createTextOutput(JSON.stringify({ok:false,error:err.message})).setMimeType(ContentService.MimeType.JSON);
+  }
 }
 function doGet(e) {
-  return ContentService.createTextOutput(JSON.stringify({ok:true,msg:"Gaspro Script activo"}))
-    .setMimeType(ContentService.MimeType.JSON);
+  return ContentService.createTextOutput(JSON.stringify({ok:true,msg:"Gaspro Script activo"})).setMimeType(ContentService.MimeType.JSON);
 }
-        </div>
-        <div style="font-size:11px;color:var(--text3);margin-top:4px">↑ Clic para copiar al portapapeles</div>
       </div>
+      <div style="font-size:11px;color:var(--text3);margin-top:4px">↑ Clic para copiar</div>
     </div>
   </div>
 
   <div class="card">
-    <div class="card-title">📦 Capacidad de Camiones</div>
+    <div class="card-title">🚛 Flota Registrada</div>
     <div class="tbl-wrap">
       <table>
-        <thead><tr><th>Placa</th><th>Modelo</th><th>Carga TM</th><th>Cil. Max</th><th>Zona</th></tr></thead>
-        <tbody>
-          <tr><td>HAH3239</td><td>HINO 2019</td><td>3.5</td><td>50</td><td><span class="pill pill-sps">SPS</span></td></tr>
-          <tr><td>HAB5763</td><td>HINO 2019</td><td>3.5</td><td>50</td><td><span class="pill pill-sps">SPS</span></td></tr>
-          <tr><td>HAU7369</td><td>HINO 2020</td><td>6.5</td><td>100</td><td><span class="pill pill-sps">SPS</span></td></tr>
-          <tr><td>C0-939BQJ</td><td>ISUZU 2017</td><td>6.5</td><td>100</td><td><span class="pill pill-sps">SPS</span></td></tr>
-          <tr><td>HAB5761</td><td>HINO 2019</td><td>6.5</td><td>100</td><td><span class="pill pill-sps">SPS</span></td></tr>
-          <tr><td>HBA0357</td><td>HINO 2021</td><td>6.5</td><td>100</td><td><span class="pill pill-cho">CHO</span></td></tr>
-          <tr><td>HAB5762</td><td>HINO 2019</td><td>6.5</td><td>100</td><td><span class="pill pill-cho">CHO</span></td></tr>
-        </tbody>
+        <thead><tr><th>#</th><th>Placa</th><th>Marca</th><th>Ciudad</th><th>Zona</th></tr></thead>
+        <tbody id="flota-tbody"></tbody>
       </table>
     </div>
   </div>
 </div>
 
-<!-- MODAL DETALLE -->
+<!-- MODAL -->
 <div id="modal-overlay" onclick="closeModal(event)">
   <div id="modal-box">
-    <button id="modal-close" onclick="closeModal()">×</button>
-    <div id="modal-title"></div>
+    <div id="modal-title"><span id="modal-title-text"></span><button id="modal-close" onclick="closeModal()">×</button></div>
     <div id="modal-body"></div>
   </div>
 </div>
@@ -656,8 +372,20 @@ function doGet(e) {
 <div id="toast"></div>
 
 <script>
-// ═══════════════════════════ DATA ═══════════════════════════
+// ═══════════ FLOTA ═══════════
+const FLOTA = [
+  {num:'01', placa:'HAH3239',  marca:'HINO',      ciudad:'SAN PEDRO SULA', zona:'SPS', cls:'sps'},
+  {num:'02', placa:'HAB5763',  marca:'HINO',      ciudad:'SAN PEDRO SULA', zona:'SPS', cls:'sps'},
+  {num:'03', placa:'HAH3236',  marca:'HINO 300',  ciudad:'LA CEIBA',       zona:'CEI', cls:'cei'},
+  {num:'04', placa:'HAU-2026', marca:'HINO',      ciudad:'TEGUCIGALPA',    zona:'TGU', cls:'tgu'},
+  {num:'05', placa:'HAB5761',  marca:'HINO',      ciudad:'SAN PEDRO SULA', zona:'SPS', cls:'sps'},
+  {num:'09', placa:'TCB3937',  marca:'HINO 500',  ciudad:'LA CEIBA',       zona:'CEI', cls:'cei'},
+  {num:'10', placa:'TEA-7469', marca:'ISUZU QKR', ciudad:'TEGUCIGALPA',    zona:'TGU', cls:'tgu'},
+  {num:'22', placa:'HAU7369',  marca:'HINO',      ciudad:'SAN PEDRO SULA', zona:'SPS', cls:'sps'},
+  {num:'23', placa:'TEA9970',  marca:'HINO',      ciudad:'CHOLUTECA',      zona:'CHO', cls:'cho'},
+];
 
+// ═══════════ PRODUCTOS ═══════════
 const PRODUCTOS = [
   {id:'O2-IND-250', label:'O₂ IND 250', grp:'OXÍGENO'},
   {id:'O2-IND-100', label:'O₂ IND 100', grp:'OXÍGENO'},
@@ -685,52 +413,40 @@ const PRODUCTOS = [
   {id:'OTROS',      label:'OTROS',       grp:'OTROS'},
 ];
 
-const CAMIONES = {
-  'HAH3239':   {modelo:'HINO 2019', tm:3.5, max:50,  zona:'SPS'},
-  'HAB5763':   {modelo:'HINO 2019', tm:3.5, max:50,  zona:'SPS'},
-  'HAU7369':   {modelo:'HINO 2020', tm:6.5, max:100, zona:'SPS'},
-  'C0-939BQJ': {modelo:'ISUZU 2017',tm:6.5, max:100, zona:'SPS'},
-  'HAB5761':   {modelo:'HINO 2019', tm:6.5, max:100, zona:'SPS'},
-  'HBA0357':   {modelo:'HINO 2021', tm:6.5, max:100, zona:'CHO'},
-  'HAB5762':   {modelo:'HINO 2019', tm:6.5, max:100, zona:'CHO'},
-};
+// ═══════════ STATE ═══════════
+let selectedCamion = null;
 
-// ═══════════════════════════ STORAGE ═══════════════════════════
+// ═══════════ STORAGE ═══════════
+const getData = () => { try { return JSON.parse(localStorage.getItem('gaspro_v2') || '[]'); } catch { return []; } };
+const saveData = d => localStorage.setItem('gaspro_v2', JSON.stringify(d));
+const getConfig = () => { try { return JSON.parse(localStorage.getItem('gaspro_cfg') || '{}'); } catch { return {}; } };
 
-function getData() {
-  try { return JSON.parse(localStorage.getItem('gaspro_data') || '[]'); } catch { return []; }
-}
-function saveData(d) { localStorage.setItem('gaspro_data', JSON.stringify(d)); }
-function getConfig() {
-  try { return JSON.parse(localStorage.getItem('gaspro_cfg') || '{}'); } catch { return {}; }
-}
-function saveConfig() {
-  const cfg = getConfig();
-  cfg.sheetsUrl = document.getElementById('cfg-url').value;
-  localStorage.setItem('gaspro_cfg', JSON.stringify(cfg));
-}
-
-// ═══════════════════════════ NAV ═══════════════════════════
-
-function showPage(p) {
+// ═══════════ NAV ═══════════
+function showPage(p, btn) {
   document.querySelectorAll('.page').forEach(el => el.classList.remove('active'));
   document.querySelectorAll('.nav-tab').forEach(el => el.classList.remove('active'));
   document.getElementById('page-' + p).classList.add('active');
-  event.target.classList.add('active');
+  if (btn) btn.classList.add('active');
   if (p === 'dash') renderDash();
-  if (p === 'config') loadConfig();
+  if (p === 'config') { loadConfig(); renderFlotaTable(); }
 }
 
-// ═══════════════════════════ BUILD FORM ═══════════════════════════
+// ═══════════ CAMION SELECT ═══════════
+function selectCamion(el, placa, marca, ciudad, cls) {
+  document.querySelectorAll('.camion-card').forEach(c => c.classList.remove('selected'));
+  el.classList.add('selected');
+  selectedCamion = { placa, marca, ciudad, zona: cls.toUpperCase(), cls };
+}
 
+// ═══════════ BUILD TRIPS ═══════════
 function buildTrips() {
-  const container = document.getElementById('trips-container');
-  container.innerHTML = '';
+  const c = document.getElementById('trips-container');
+  c.innerHTML = '';
   for (let t = 1; t <= 4; t++) {
-    const block = document.createElement('div');
-    block.className = 'trip-block' + (t === 1 ? ' open' : '');
-    block.id = 'trip-' + t;
-    block.innerHTML = `
+    const b = document.createElement('div');
+    b.className = 'trip-block' + (t === 1 ? ' open' : '');
+    b.id = 'trip-' + t;
+    b.innerHTML = `
       <div class="trip-header" onclick="toggleTrip(${t})">
         <div class="trip-header-left">
           <span class="trip-num">TRIP ${t}</span>
@@ -739,265 +455,220 @@ function buildTrips() {
         <span class="trip-toggle">▼</span>
       </div>
       <div class="trip-body">
-        <label class="trip-active-toggle" onclick="toggleActive(${t})">
+        <div class="toggle-row" onclick="toggleActive(${t})">
           <div class="toggle-switch ${t===1?'on':''}" id="tog-${t}"></div>
-          <span id="tog-lbl-${t}">${t===1?'Trip activo':'Trip inactivo — clic para activar'}</span>
-        </label>
+          <span class="toggle-lbl" id="tog-lbl-${t}">${t===1?'Trip activo':'Trip inactivo — clic para activar'}</span>
+        </div>
         <div id="trip-fields-${t}" style="${t===1?'':'display:none'}">
           <div class="field-row triple">
-            <div class="field">
-              <label>Kms Inicial</label>
-              <input type="number" id="t${t}-kms-ini" placeholder="0" oninput="updateTripSummary(${t})">
-            </div>
-            <div class="field">
-              <label>Kms Final</label>
-              <input type="number" id="t${t}-kms-fin" placeholder="0" oninput="updateTripSummary(${t})">
-            </div>
-            <div class="field">
-              <label>Recorrido</label>
-              <input type="number" id="t${t}-kms-rec" placeholder="auto" readonly style="color:var(--accent)">
-            </div>
+            <div class="field"><label>Kms Inicial</label><input type="number" id="t${t}-kms-ini" placeholder="0"></div>
+            <div class="field"><label>Kms Final</label><input type="number" id="t${t}-kms-fin" placeholder="0"></div>
+            <div class="field"><label>Recorrido</label><input type="number" id="t${t}-kms-rec" readonly style="color:var(--accent)"></div>
           </div>
           <div class="field-row">
-            <div class="field">
-              <label>Hora Salida</label>
-              <input type="time" id="t${t}-hora-sal">
-            </div>
-            <div class="field">
-              <label>Hora Entrada</label>
-              <input type="time" id="t${t}-hora-ent">
-            </div>
+            <div class="field"><label>Hora Salida</label><input type="time" id="t${t}-hora-sal"></div>
+            <div class="field"><label>Hora Entrada</label><input type="time" id="t${t}-hora-ent"></div>
           </div>
           <div class="cil-section">
-            <div class="cil-header">
-              <span>Producto</span><span style="text-align:center">Salida</span><span style="text-align:center">Retorno</span>
-            </div>
+            <div class="cil-header"><span>Producto</span><span style="text-align:center">Salida</span><span style="text-align:center">Retorno</span></div>
             ${buildProductRows(t)}
           </div>
         </div>
       </div>`;
-    container.appendChild(block);
-  }
-  // KM auto-calc
-  for (let t = 1; t <= 4; t++) {
+    c.appendChild(b);
     ['ini','fin'].forEach(k => {
       document.getElementById(`t${t}-kms-${k}`).addEventListener('input', () => {
-        const ini = +document.getElementById(`t${t}-kms-ini`).value || 0;
-        const fin = +document.getElementById(`t${t}-kms-fin`).value || 0;
+        const ini = +document.getElementById(`t${t}-kms-ini`).value||0;
+        const fin = +document.getElementById(`t${t}-kms-fin`).value||0;
         document.getElementById(`t${t}-kms-rec`).value = fin > ini ? fin - ini : '';
         updateTripSummary(t);
       });
+    });
+    PRODUCTOS.forEach(p => {
+      document.getElementById(`t${t}-sal-${p.id}`).addEventListener('input', () => updateTripSummary(t));
     });
   }
 }
 
 function buildProductRows(t) {
-  let html = '';
-  let lastGrp = '';
+  let html = '', lastGrp = '';
   PRODUCTOS.forEach(p => {
-    if (p.grp !== lastGrp) {
-      html += `<div class="cil-group-label">${p.grp}</div>`;
-      lastGrp = p.grp;
-    }
+    if (p.grp !== lastGrp) { html += `<div class="cil-group-label">${p.grp}</div>`; lastGrp = p.grp; }
     html += `<div class="cil-row">
       <span class="cil-name">${p.label}</span>
-      <input type="number" id="t${t}-sal-${p.id}" min="0" placeholder="0" oninput="updateTripSummary(${t})">
+      <input type="number" id="t${t}-sal-${p.id}" min="0" placeholder="0">
       <input type="number" id="t${t}-ret-${p.id}" min="0" placeholder="0">
     </div>`;
   });
   return html;
 }
 
-function toggleTrip(t) {
-  document.getElementById('trip-' + t).classList.toggle('open');
-}
+function toggleTrip(t) { document.getElementById('trip-'+t).classList.toggle('open'); }
 
 function toggleActive(t) {
-  const tog = document.getElementById('tog-' + t);
-  const fields = document.getElementById('trip-fields-' + t);
-  const lbl = document.getElementById('tog-lbl-' + t);
-  const isOn = tog.classList.toggle('on');
-  fields.style.display = isOn ? '' : 'none';
-  lbl.textContent = isOn ? 'Trip activo' : 'Trip inactivo — clic para activar';
+  const tog = document.getElementById('tog-'+t);
+  const fields = document.getElementById('trip-fields-'+t);
+  const lbl = document.getElementById('tog-lbl-'+t);
+  const on = tog.classList.toggle('on');
+  fields.style.display = on ? '' : 'none';
+  lbl.textContent = on ? 'Trip activo' : 'Trip inactivo — clic para activar';
 }
 
 function updateTripSummary(t) {
-  const rec = +document.getElementById(`t${t}-kms-rec`).value || 0;
-  let salTotal = 0;
-  PRODUCTOS.forEach(p => { salTotal += +document.getElementById(`t${t}-sal-${p.id}`).value || 0; });
-  const summary = document.getElementById('ts-' + t);
-  if (rec || salTotal) {
-    summary.textContent = `${rec} kms · ${salTotal} cil. salida`;
-    summary.style.color = 'var(--accent2)';
-  } else {
-    summary.textContent = 'Sin datos';
-    summary.style.color = '';
-  }
+  const rec = +document.getElementById(`t${t}-kms-rec`).value||0;
+  let sal = 0;
+  PRODUCTOS.forEach(p => { sal += +document.getElementById(`t${t}-sal-${p.id}`).value||0; });
+  const el = document.getElementById('ts-'+t);
+  if (rec||sal) { el.textContent = `${rec} kms · ${sal} cil.`; el.style.color='var(--accent2)'; }
+  else { el.textContent = 'Sin datos'; el.style.color=''; }
 }
 
-// ═══════════════════════════ GUARDAR ═══════════════════════════
-
+// ═══════════ GUARDAR ═══════════
 function guardarRegistro() {
   const fecha = document.getElementById('f-fecha').value;
-  const camion = document.getElementById('f-camion').value;
-  if (!fecha || !camion) { toast('Selecciona fecha y camión', true); return; }
+  if (!fecha) { toast('Selecciona la fecha', true); return; }
+  if (!selectedCamion) { toast('Selecciona tu camión', true); return; }
 
-  const camionInfo = CAMIONES[camion];
   const trips = [];
-
   for (let t = 1; t <= 4; t++) {
-    const tog = document.getElementById('tog-' + t);
-    if (!tog.classList.contains('on')) continue;
-    const kmsIni = +document.getElementById(`t${t}-kms-ini`).value || 0;
-    const kmsFin = +document.getElementById(`t${t}-kms-fin`).value || 0;
-    const kmsRec = +document.getElementById(`t${t}-kms-rec`).value || 0;
+    if (!document.getElementById('tog-'+t).classList.contains('on')) continue;
+    const kmsIni = +document.getElementById(`t${t}-kms-ini`).value||0;
+    const kmsFin = +document.getElementById(`t${t}-kms-fin`).value||0;
+    const kmsRec = +document.getElementById(`t${t}-kms-rec`).value||0;
     const horaSal = document.getElementById(`t${t}-hora-sal`).value;
     const horaEnt = document.getElementById(`t${t}-hora-ent`).value;
-
     const salida = {}, retorno = {};
     let cilSal = 0, cilRet = 0;
     PRODUCTOS.forEach(p => {
-      salida[p.id] = +document.getElementById(`t${t}-sal-${p.id}`).value || 0;
-      retorno[p.id] = +document.getElementById(`t${t}-ret-${p.id}`).value || 0;
-      cilSal += salida[p.id];
-      cilRet += retorno[p.id];
+      salida[p.id]  = +document.getElementById(`t${t}-sal-${p.id}`).value||0;
+      retorno[p.id] = +document.getElementById(`t${t}-ret-${p.id}`).value||0;
+      cilSal += salida[p.id]; cilRet += retorno[p.id];
     });
-
-    const maxCil = camionInfo.max;
-    const tasaSal = maxCil > 0 ? (cilSal / maxCil) : 0;
-    const tasaRet = maxCil > 0 ? (cilRet / maxCil) : 0;
-
-    trips.push({ trip: t, kmsIni, kmsFin, kmsRec, horaSal, horaEnt, salida, retorno, cilSal, cilRet, tasaSal, tasaRet });
+    trips.push({ trip:t, kmsIni, kmsFin, kmsRec, horaSal, horaEnt, salida, retorno, cilSal, cilRet });
   }
-
-  if (trips.length === 0) { toast('Activa al menos un trip', true); return; }
+  if (!trips.length) { toast('Activa al menos un trip', true); return; }
 
   const data = getData();
-  // Remover registro previo del mismo día y camión
-  const idx = data.findIndex(r => r.fecha === fecha && r.camion === camion);
-  const record = { fecha, camion, zona: camionInfo.zona, modelo: camionInfo.modelo, trips, ts: Date.now() };
-  if (idx >= 0) data[idx] = record; else data.push(record);
+  const idx = data.findIndex(r => r.fecha===fecha && r.placa===selectedCamion.placa);
+  const record = { fecha, ...selectedCamion, trips, ts: Date.now() };
+  if (idx>=0) data[idx]=record; else data.push(record);
   saveData(data);
-
   syncToSheets(record);
-  toast(`✓ Guardado — ${trips.length} trip(s) para ${camion}`);
+  toast(`✓ Guardado — ${trips.length} trip(s) · ${selectedCamion.placa}`);
+  resetForm();
+}
 
-  // Reset form
+function resetForm() {
+  document.querySelectorAll('.camion-card').forEach(c => c.classList.remove('selected'));
+  selectedCamion = null;
   for (let t = 1; t <= 4; t++) {
-    const tog = document.getElementById('tog-' + t);
-    const fields = document.getElementById('trip-fields-' + t);
-    const lbl = document.getElementById('tog-lbl-' + t);
-    if (t > 1 && tog.classList.contains('on')) {
-      tog.classList.remove('on');
-      fields.style.display = 'none';
-      lbl.textContent = 'Trip inactivo — clic para activar';
-    }
-    ['kms-ini','kms-fin','kms-rec'].forEach(k => document.getElementById(`t${t}-${k}`).value = '');
-    document.getElementById(`t${t}-hora-sal`).value = '';
-    document.getElementById(`t${t}-hora-ent`).value = '';
-    PRODUCTOS.forEach(p => {
-      document.getElementById(`t${t}-sal-${p.id}`).value = '';
-      document.getElementById(`t${t}-ret-${p.id}`).value = '';
-    });
+    const tog = document.getElementById('tog-'+t);
+    const fields = document.getElementById('trip-fields-'+t);
+    const lbl = document.getElementById('tog-lbl-'+t);
+    if (t>1 && tog.classList.contains('on')) { tog.classList.remove('on'); fields.style.display='none'; lbl.textContent='Trip inactivo — clic para activar'; }
+    ['kms-ini','kms-fin','kms-rec'].forEach(k => document.getElementById(`t${t}-${k}`).value='');
+    document.getElementById(`t${t}-hora-sal`).value='';
+    document.getElementById(`t${t}-hora-ent`).value='';
+    PRODUCTOS.forEach(p => { document.getElementById(`t${t}-sal-${p.id}`).value=''; document.getElementById(`t${t}-ret-${p.id}`).value=''; });
     updateTripSummary(t);
   }
 }
 
-// ═══════════════════════════ GOOGLE SHEETS SYNC ═══════════════════════════
-
+// ═══════════ SHEETS SYNC ═══════════
 async function syncToSheets(record) {
   const cfg = getConfig();
   if (!cfg.sheetsUrl) return;
-  const rows = buildSheetRows(record);
-  try {
-    await fetch(cfg.sheetsUrl, {
-      method: 'POST',
-      body: JSON.stringify({ rows }),
-    });
-  } catch (e) { /* silent fail */ }
+  const rows = record.trips.map(tr => [
+    record.fecha, record.placa, record.zona, record.ciudad, tr.trip,
+    tr.kmsIni, tr.kmsFin, tr.kmsRec, tr.horaSal, tr.horaEnt,
+    ...PRODUCTOS.map(p => tr.salida[p.id]||0),
+    ...PRODUCTOS.map(p => tr.retorno[p.id]||0),
+    tr.cilSal, tr.cilRet
+  ]);
+  try { await fetch(cfg.sheetsUrl, { method:'POST', body:JSON.stringify({rows}) }); } catch {}
 }
 
-function buildSheetRows(record) {
-  return record.trips.map(tr => {
-    const salVals = PRODUCTOS.map(p => tr.salida[p.id] || 0);
-    const retVals = PRODUCTOS.map(p => tr.retorno[p.id] || 0);
-    return [
-      record.fecha, record.camion, record.zona, tr.trip,
-      tr.kmsIni, tr.kmsFin, tr.kmsRec, tr.horaSal, tr.horaEnt,
-      ...salVals, ...retVals,
-      tr.cilSal, tr.cilRet,
-      Math.round(((tr.tasaSal + tr.tasaRet) / 2) * 100) / 100
-    ];
-  });
-}
-
-// ═══════════════════════════ DASHBOARD ═══════════════════════════
+// ═══════════ DASHBOARD ═══════════
+const ZONA_INFO = {
+  'SAN PEDRO SULA': {cls:'sps', label:'San Pedro Sula', color:'#60a5fa'},
+  'LA CEIBA':       {cls:'cei', label:'La Ceiba',       color:'#4ade80'},
+  'TEGUCIGALPA':    {cls:'tgu', label:'Tegucigalpa',    color:'#c084fc'},
+  'CHOLUTECA':      {cls:'cho', label:'Choluteca',      color:'#fb923c'},
+};
 
 function renderDash() {
   const fecha = document.getElementById('d-fecha').value;
-  const filtCamion = document.getElementById('d-camion').value;
-  const data = getData();
-  let records = data;
-  if (fecha) records = records.filter(r => r.fecha === fecha);
-  if (filtCamion) records = records.filter(r => r.camion === filtCamion);
+  const filtZona = document.getElementById('d-zona').value;
+  let data = getData();
+  if (fecha) data = data.filter(r => r.fecha===fecha);
+  if (filtZona) data = data.filter(r => r.ciudad===filtZona);
 
-  let totalTrips = 0, totalKms = 0, totalCils = 0;
-  records.forEach(r => {
-    r.trips.forEach(t => { totalTrips++; totalKms += t.kmsRec; totalCils += t.cilSal; });
-  });
+  let totCam=0, totTrips=0, totKms=0, totCils=0;
+  data.forEach(r => { totCam++; r.trips.forEach(t => { totTrips++; totKms+=t.kmsRec; totCils+=t.cilSal; }); });
+  document.getElementById('s-camiones').textContent = totCam;
+  document.getElementById('s-trips').textContent = totTrips;
+  document.getElementById('s-kms').textContent = totKms;
+  document.getElementById('s-cils').textContent = totCils;
 
-  document.getElementById('s-trips').textContent = totalTrips;
-  document.getElementById('s-kms').textContent = totalKms;
-  document.getElementById('s-cils').textContent = totalCils;
+  const container = document.getElementById('dash-zonas');
+  if (!data.length) { container.innerHTML = '<div class="empty-state">Sin registros para los filtros seleccionados</div>'; return; }
 
-  const tbody = document.getElementById('dash-tbody');
-  if (records.length === 0) {
-    tbody.innerHTML = '<tr><td colspan="8" class="empty-state">Sin registros para los filtros seleccionados</td></tr>';
-    return;
-  }
+  // Group by ciudad
+  const byZona = {};
+  data.forEach(r => { if (!byZona[r.ciudad]) byZona[r.ciudad]=[];  byZona[r.ciudad].push(r); });
 
-  tbody.innerHTML = records.map(r => {
-    const nTrips = r.trips.length;
-    const kms = r.trips.reduce((a, t) => a + t.kmsRec, 0);
-    const cilSal = r.trips.reduce((a, t) => a + t.cilSal, 0);
-    const cilRet = r.trips.reduce((a, t) => a + t.cilRet, 0);
-    const tasa = r.trips.reduce((a, t) => a + (t.tasaSal + t.tasaRet) / 2, 0) / nTrips;
-    const zonaPill = r.zona === 'SPS' ? 'pill-sps' : 'pill-cho';
-    return `<tr>
-      <td><strong>${r.camion}</strong><br><small style="color:var(--text3)">${r.modelo || ''}</small></td>
-      <td><span class="pill ${zonaPill}">${r.zona}</span></td>
-      <td class="num">${nTrips}</td>
-      <td class="num">${kms}</td>
-      <td class="num">${cilSal}</td>
-      <td class="num">${cilRet}</td>
-      <td class="num">${Math.round(tasa * 100)}%</td>
-      <td><button class="detail-btn" onclick="showDetail('${r.camion}','${r.fecha}')">Ver</button></td>
-    </tr>`;
+  container.innerHTML = Object.entries(byZona).map(([zona, records]) => {
+    const zi = ZONA_INFO[zona] || {cls:'sps', label:zona, color:'#888'};
+    const rows = records.map(r => {
+      const nTrips = r.trips.length;
+      const kms = r.trips.reduce((a,t)=>a+t.kmsRec,0);
+      const cilSal = r.trips.reduce((a,t)=>a+t.cilSal,0);
+      const cilRet = r.trips.reduce((a,t)=>a+t.cilRet,0);
+      const cam = FLOTA.find(f=>f.placa===r.placa)||{};
+      return `<tr>
+        <td><strong>#${cam.num||'?'}</strong></td>
+        <td>${r.placa}</td>
+        <td>${r.marca||''}</td>
+        <td class="num">${nTrips}</td>
+        <td class="num">${kms}</td>
+        <td class="num">${cilSal}</td>
+        <td class="num">${cilRet}</td>
+        <td><button class="detail-btn" onclick="showDetail('${r.placa}','${r.fecha}')">Ver</button></td>
+      </tr>`;
+    }).join('');
+    return `<div class="zona-section">
+      <div class="zona-header ${zi.cls}">📍 ${zi.label}</div>
+      <div class="tbl-wrap" style="border-radius:0 0 8px 8px">
+        <table>
+          <thead><tr><th>#</th><th>Placa</th><th>Marca</th><th class="num">Trips</th><th class="num">Kms</th><th class="num">Sal.</th><th class="num">Ret.</th><th></th></tr></thead>
+          <tbody>${rows}</tbody>
+        </table>
+      </div>
+    </div>`;
   }).join('');
 }
 
-function showDetail(camion, fecha) {
-  const data = getData();
-  const record = data.find(r => r.camion === camion && r.fecha === fecha);
-  if (!record) return;
-
-  document.getElementById('modal-title').textContent = `${camion} — ${fecha}`;
+function showDetail(placa, fecha) {
+  const r = getData().find(r => r.placa===placa && r.fecha===fecha);
+  if (!r) return;
+  const cam = FLOTA.find(f=>f.placa===placa)||{};
+  document.getElementById('modal-title-text').textContent = `#${cam.num||'?'} ${placa} — ${fecha}`;
   let html = '';
-  record.trips.forEach(tr => {
+  r.trips.forEach(tr => {
+    const prodRows = PRODUCTOS.filter(p=>tr.salida[p.id]||tr.retorno[p.id]).map(p =>
+      `<tr><td>${p.label}</td><td class="num">${tr.salida[p.id]||0}</td><td class="num">${tr.retorno[p.id]||0}</td></tr>`
+    ).join('') || '<tr><td colspan="3" class="empty-state">Sin cilindros</td></tr>';
     html += `<div style="margin-bottom:16px;padding-bottom:14px;border-bottom:1px solid var(--border)">
-      <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:15px;color:var(--accent);margin-bottom:8px">TRIP ${tr.trip}</div>
+      <div style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:16px;color:var(--accent);margin-bottom:8px">TRIP ${tr.trip}</div>
       <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:10px;font-size:12px">
-        <div><span style="color:var(--text3)">KMS</span><br><strong>${tr.kmsRec}</strong></div>
-        <div><span style="color:var(--text3)">SALIDA</span><br><strong>${tr.horaSal || '—'}</strong></div>
-        <div><span style="color:var(--text3)">ENTRADA</span><br><strong>${tr.horaEnt || '—'}</strong></div>
+        <div><span style="color:var(--text3);font-size:10px">KMS REC.</span><br><strong>${tr.kmsRec}</strong></div>
+        <div><span style="color:var(--text3);font-size:10px">SALIDA</span><br><strong>${tr.horaSal||'—'}</strong></div>
+        <div><span style="color:var(--text3);font-size:10px">ENTRADA</span><br><strong>${tr.horaEnt||'—'}</strong></div>
       </div>
       <div class="tbl-wrap"><table>
         <thead><tr><th>Producto</th><th class="num">Salida</th><th class="num">Retorno</th></tr></thead>
-        <tbody>
-          ${PRODUCTOS.filter(p => tr.salida[p.id] || tr.retorno[p.id]).map(p => `
-            <tr><td>${p.label}</td><td class="num">${tr.salida[p.id]||0}</td><td class="num">${tr.retorno[p.id]||0}</td></tr>
-          `).join('') || '<tr><td colspan="3" class="empty-state">Sin cilindros registrados</td></tr>'}
-          <tr style="font-weight:700;border-top:2px solid var(--border)">
+        <tbody>${prodRows}
+          <tr style="font-weight:700">
             <td>TOTAL</td>
             <td class="num" style="color:var(--accent)">${tr.cilSal}</td>
             <td class="num" style="color:var(--accent)">${tr.cilRet}</td>
@@ -1011,105 +682,99 @@ function showDetail(camion, fecha) {
 }
 
 function closeModal(e) {
-  if (!e || e.target === document.getElementById('modal-overlay') || e.target.id === 'modal-close') {
+  if (!e || e.target===document.getElementById('modal-overlay') || e.target.id==='modal-close')
     document.getElementById('modal-overlay').classList.remove('open');
-  }
 }
 
-// ═══════════════════════════ EXPORT ═══════════════════════════
-
+// ═══════════ EXPORT ═══════════
+function buildCSVRows(records) {
+  const ph = PRODUCTOS.map(p=>p.id);
+  const headers = ['FECHA','PLACA','ZONA','CIUDAD','TRIP','KMS_INI','KMS_FIN','KMS_REC','HORA_SAL','HORA_ENT',
+    ...ph.map(h=>'SAL_'+h), ...ph.map(h=>'RET_'+h), 'CIL_SALIDA','CIL_RETORNO'];
+  const rows = [headers];
+  records.forEach(r => r.trips.forEach(tr => {
+    rows.push([r.fecha,r.placa,r.zona,r.ciudad,tr.trip,tr.kmsIni,tr.kmsFin,tr.kmsRec,tr.horaSal,tr.horaEnt,
+      ...PRODUCTOS.map(p=>tr.salida[p.id]||0), ...PRODUCTOS.map(p=>tr.retorno[p.id]||0), tr.cilSal,tr.cilRet]);
+  }));
+  return rows;
+}
+function downloadCSV(rows, filename) {
+  const csv = rows.map(r=>r.join(',')).join('\n');
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob(['\uFEFF'+csv],{type:'text/csv;charset=utf-8'}));
+  a.download = filename; a.click();
+  toast('✓ CSV descargado');
+}
 function exportCSV() {
   const fecha = document.getElementById('d-fecha').value;
   const data = getData();
-  const records = fecha ? data.filter(r => r.fecha === fecha) : data;
-  downloadCSV(records, `gaspro_${fecha || 'all'}.csv`);
+  const records = fecha ? data.filter(r=>r.fecha===fecha) : data;
+  if (!records.length) { toast('Sin datos para exportar',true); return; }
+  downloadCSV(buildCSVRows(records), `gaspro_${fecha||'all'}.csv`);
 }
-
 function exportAllCSV() {
-  downloadCSV(getData(), `gaspro_mes_completo.csv`);
+  const d = getData();
+  if (!d.length) { toast('Sin datos',true); return; }
+  downloadCSV(buildCSVRows(d), 'gaspro_mes_completo.csv');
 }
-
-function downloadCSV(records, filename) {
-  if (records.length === 0) { toast('Sin datos para exportar', true); return; }
-  const prodHeaders = PRODUCTOS.map(p => p.id);
-  const headers = ['FECHA','CAMION','ZONA','TRIP','KMS_INI','KMS_FIN','KMS_REC','HORA_SAL','HORA_ENT',
-    ...prodHeaders.map(h => 'SAL_' + h), ...prodHeaders.map(h => 'RET_' + h),
-    'CIL_SALIDA','CIL_RETORNO','TASA_CARGA'];
-  const rows = [headers];
-  records.forEach(r => {
-    r.trips.forEach(tr => {
-      const salVals = PRODUCTOS.map(p => tr.salida[p.id] || 0);
-      const retVals = PRODUCTOS.map(p => tr.retorno[p.id] || 0);
-      rows.push([r.fecha, r.camion, r.zona, tr.trip,
-        tr.kmsIni, tr.kmsFin, tr.kmsRec, tr.horaSal, tr.horaEnt,
-        ...salVals, ...retVals, tr.cilSal, tr.cilRet,
-        Math.round(((tr.tasaSal + tr.tasaRet) / 2) * 1000) / 1000]);
-    });
-  });
-  const csv = rows.map(r => r.join(',')).join('\n');
-  const blob = new Blob(['\uFEFF' + csv], { type: 'text/csv;charset=utf-8' });
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
-  a.download = filename;
-  a.click();
-  toast('✓ CSV descargado');
-}
-
 function clearData() {
-  if (confirm('¿Borrar TODOS los registros guardados? Esta acción no se puede deshacer.')) {
-    localStorage.removeItem('gaspro_data');
-    renderDash();
-    toast('Datos borrados');
+  if (confirm('¿Borrar TODOS los registros? Esta acción no se puede deshacer.')) {
+    localStorage.removeItem('gaspro_v2'); renderDash(); toast('Datos borrados');
   }
 }
 
-// ═══════════════════════════ CONFIG ═══════════════════════════
-
+// ═══════════ CONFIG ═══════════
 function loadConfig() {
   const cfg = getConfig();
   if (cfg.sheetsUrl) document.getElementById('cfg-url').value = cfg.sheetsUrl;
 }
-
+function saveConfig() {
+  const cfg = getConfig();
+  cfg.sheetsUrl = document.getElementById('cfg-url').value;
+  localStorage.setItem('gaspro_cfg', JSON.stringify(cfg));
+}
 async function testConnection() {
   const url = document.getElementById('cfg-url').value;
-  if (!url) { toast('Ingresa la URL primero', true); return; }
-  const statusEl = document.getElementById('conn-status');
-  statusEl.textContent = 'Probando...';
-  statusEl.style.color = 'var(--text3)';
+  if (!url) { toast('Ingresa la URL primero',true); return; }
+  const el = document.getElementById('conn-status');
+  el.textContent = 'Probando...'; el.style.color='var(--text3)';
   try {
     const r = await fetch(url);
     const d = await r.json();
-    if (d.ok) {
-      statusEl.textContent = '✓ Conexión exitosa — ' + (d.msg || 'Script activo');
-      statusEl.style.color = 'var(--green)';
-      saveConfig();
-    } else throw new Error();
-  } catch {
-    statusEl.textContent = '✗ No se pudo conectar. Verifica la URL y permisos del script.';
-    statusEl.style.color = 'var(--red)';
-  }
+    if (d.ok) { el.textContent='✓ Conexión exitosa — '+( d.msg||'Script activo'); el.style.color='var(--green)'; saveConfig(); }
+    else throw new Error();
+  } catch { el.textContent='✗ No se pudo conectar. Verifica URL y permisos.'; el.style.color='var(--red)'; }
 }
-
 function copyScript() {
-  const code = document.getElementById('apps-script-code').innerText;
-  navigator.clipboard.writeText(code).then(() => toast('Código copiado al portapapeles'));
+  navigator.clipboard.writeText(document.querySelector('.code-box').innerText)
+    .then(()=>toast('Código copiado'));
 }
 
-// ═══════════════════════════ TOAST ═══════════════════════════
+function renderFlotaTable() {
+  const ZONA_COLORS = {SPS:'zona-sps',CEI:'zona-cei',TGU:'zona-tgu',CHO:'zona-cho'};
+  document.getElementById('flota-tbody').innerHTML = FLOTA.map(f =>
+    `<tr>
+      <td><strong>#${f.num}</strong></td>
+      <td style="font-weight:600">${f.placa}</td>
+      <td>${f.marca}</td>
+      <td>${f.ciudad}</td>
+      <td><span class="zona-badge ${ZONA_COLORS[f.zona]||''}">${f.zona}</span></td>
+    </tr>`
+  ).join('');
+}
 
+// ═══════════ TOAST ═══════════
 let toastTimer;
 function toast(msg, isError) {
   const el = document.getElementById('toast');
   el.textContent = msg;
-  el.className = 'show' + (isError ? ' error' : '');
+  el.className = 'show' + (isError?' error':'');
   clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => el.className = '', 3000);
+  toastTimer = setTimeout(()=>el.className='', 3000);
 }
 
-// ═══════════════════════════ INIT ═══════════════════════════
-
-document.addEventListener('DOMContentLoaded', () => {
-  // Set today's date
+// ═══════════ INIT ═══════════
+document.addEventListener('DOMContentLoaded', ()=>{
   const today = new Date().toISOString().split('T')[0];
   document.getElementById('f-fecha').value = today;
   document.getElementById('d-fecha').value = today;
